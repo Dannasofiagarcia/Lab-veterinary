@@ -18,7 +18,7 @@ public class Veterinary{
      //Relaciones
 
      private Client clients;
-     private Room [] miniRoom;
+     private Pet [] miniRoom;
      
 
 
@@ -27,9 +27,34 @@ public class Veterinary{
      public Veterinary (String name, Client clients){
 
          this.name = name;
-         miniRoom = new Room [QUANTITY_ROOMS];
+         miniRoom = new Pet [QUANTITY_ROOMS];
      }
 
+     
+     //Metodo para añadir mascota a la habitacion
+
+     public String addPetToTheRoom (Pet petRegister){
+
+         boolean addMascota = false;
+         String msj = "";
+
+         for (int i = 0; i < miniRoom.length && !addMascota; i++){
+
+             if (miniRoom[i] != null){
+
+                miniRoom [i] = petRegister;
+                msj = ("La mascota se registro con exito y fue agregada a la habitacion numero " + i + "\n");
+                addMascota = true;
+            }
+
+             else {
+                 msj = "La mascota no pudo ser registrada porque no hay habitaciones disponibles";
+            }
+        }
+        
+        return msj;  
+         
+     }
 
      //Get and set
 
@@ -49,11 +74,11 @@ public class Veterinary{
 	     this.clients = clients;
 	}
 
-	public Room[] getMiniRoom() {
+	public Pet[] getMiniRoom() {
 		 return miniRoom;
 	}
 
-    public void setMiniRoom (Room[] miniRoom) {
+    public void setMiniRoom (Pet[] miniRoom) {
 	     this.miniRoom = miniRoom;
 	}
 

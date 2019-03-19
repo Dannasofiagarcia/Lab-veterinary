@@ -70,6 +70,59 @@ public class Main {
 		     showOptions();	
 	         userInput = reader.nextInt();
 	         reader.nextLine();
+
+	     switch (userInput){
+
+	     	case 1:
+
+	     	     System.out.println ("Ingrese el nombre de la mascota");
+                 String registerName = reader.nextLine();
+
+                 System.out.println ("Ingrese el tipo de mascota \n 1. Perro \n 2. Gato \n 3. Pajaro \n 4. Otro");
+                 int selectionKind = reader.nextInt();
+                 reader.nextLine();
+
+                 public String knowWhatUserSelected(){
+
+                 String kind = ""; 
+                 	if (selectionKind == 1){
+                 		 kind = "DOG";
+                 	} 
+
+                     else if (selectionKind ==2){
+                     	 kind = "CAT";
+
+                     }
+
+                     else if (selectionKind ==3){
+                     	kind = "BIRD";
+                     }
+
+                     else {
+
+                     	kind = "OTHER";
+                     }
+                 return kind;
+                 }
+
+                 System.out.println ("Ingrese el dia de nacimiento de la mascota");
+                 int birthDay = reader.nextInt();
+                 reader.nextLine();
+
+                 System.out.println ("Ingrese el mes de nacimiento de la mascota");
+                 int birthMonth = reader.nextInt();
+                 reader.nextLine();
+
+                 System.out.println ("Ingrese el año de nacimiento de la mascota");
+                 int birthYear = reader.nextInt();
+                 reader.nextLine();
+               
+                 Time birthDate = new Time (birthYear, birthMonth, birthDay);
+                 Pet petRegister = new Pet (name, weight, kind, birthDate);
+
+
+
+	         }
 	     }
     }
 	
