@@ -45,6 +45,10 @@ public class Main {
 
              System.out.println ("1. Para registrar un nuevo cliente");
 
+             System.out.println ("2. Para registrar una nueva mascota");
+
+             System.out.println ("3. Para hospitalizar una mascota");
+
 	         System.out.println ("2. Para ver disponibilidad en las habitaciones");
 
 	         System.out.println ("3. Para ver el historial clinico de la mascota");
@@ -75,55 +79,96 @@ public class Main {
 
 	     	case 1:
 
-	     	     System.out.println ("Ingrese el nombre de la mascota");
-                 String registerName = reader.nextLine();
+             System.out.println ("Ingrese el id del cliente");
+             int registerClientId = reader.nextInt();
 
-                 System.out.println ("Ingrese el tipo de mascota \n 1. Perro \n 2. Gato \n 3. Pajaro \n 4. Otro");
-                 int selectionKind = reader.nextInt();
-                 reader.nextLine();
+                 if (myLittlePet.checkIfClientExist(registerClientId) == false){
 
-                 public String knowWhatUserSelected(){
+             	     System.out.println ("Su id no existe en el sistema, ¿desea registrarse?");
+             	     System.out.println ("¿Desea registrarse? \n 1. Deseo registrarme \n 2. No deseo registrarme \n");
+             	     int registerSelection = reader.nextInt();
 
-                 String kind = ""; 
-                 	if (selectionKind == 1){
-                 		 kind = "DOG";
-                 	} 
+             	         if (registerSelection == 1){
 
-                     else if (selectionKind ==2){
-                     	 kind = "CAT";
+                             System.out.println ("Ingrese el nombre del cliente");
+                             String registerClientName = reader.nextLine();
+ 
+                             System.out.println ("Ingrese la direccion del cliente");
+                             String registerClientDirection = reader.nextLine();
 
-                     }
+                             System.out.println ("Ingrese el numero de telefono del cliente");
+                             int registerNumberPhoneClient = reader.nextInt();
+                             reader.nextLine();
 
-                     else if (selectionKind ==3){
-                     	kind = "BIRD";
-                     }
+                             Client registerClient = new Client (registerClientName, registerClientId, registerClientDirection, registerNumberPhoneClient);
 
-                     else {
+                             System.out.println ("Cliente registrado con exito \n");
+                             System.out.println ("¿Desea registrar una mascota? \n 1. Sí, registrarla \n 2. No, no la deseo registrar");
+                             int registerAPetSelection = reader.nextInt();
 
-                     	kind = "OTHER";
-                     }
-                 return kind;
-                 }
 
-                 System.out.println ("Ingrese el dia de nacimiento de la mascota");
-                 int birthDay = reader.nextInt();
-                 reader.nextLine();
+                                 if (registerAPetSelection == 1){
 
-                 System.out.println ("Ingrese el mes de nacimiento de la mascota");
-                 int birthMonth = reader.nextInt();
-                 reader.nextLine();
+                                 	 System.out.println ("Ingrese el nombre de la mascota");
+                                     String registerPetName = reader.nextLine();
 
-                 System.out.println ("Ingrese el año de nacimiento de la mascota");
-                 int birthYear = reader.nextInt();
-                 reader.nextLine();
+                                     System.out.println ("Ingrese el tipo de mascota \n 1. Perro \n 2. Gato \n 3. Pajaro \n 4. Otro");
+                                     int selectionKind = reader.nextInt();
+                                     reader.nextLine();
+
+                                     System.out.println ("Ingrese el peso de la mascota");
+                                     double registerPetWeight = reader.nextDouble();
+
+                                     
+                                     String kind = "";
+
+                                         if (selectionKind ==1){
+                                         	kind = "DOG";
+                                         }
+
+                                         else if (selectionKind ==2){
+                     	                     kind = "CAT";
+
+                                         }
+
+                                         else if (selectionKind ==3){
+                     	                     kind = "BIRD";
+                                         }
+
+                                         else {
+                                         	 kind = "OTHER";
+                                        }
+                                     
+                                     System.out.println ("Ingrese el dia de nacimiento de la mascota");
+                                     int birthDay = reader.nextInt();
+                                     reader.nextLine();
+
+                                     System.out.println ("Ingrese el mes de nacimiento de la mascota");
+                                     int birthMonth = reader.nextInt();
+                                     reader.nextLine();
+
+                                     System.out.println ("Ingrese el año de nacimiento de la mascota");
+                                     int birthYear = reader.nextInt();
+                                     reader.nextLine();
                
-                 Time birthDate = new Time (birthYear, birthMonth, birthDay);
-                 Pet petRegister = new Pet (name, weight, kind, birthDate);
+                                     Time birthDate = new Time (birthYear, birthMonth, birthDay);
+                                     Pet petRegister = new Pet (registerPetName, registerPetWeight, kind, birthDate);
 
 
+                                 }
 
-	         }
-	     }
-    }
+                         else {
+                         	 System.out.println ("No se realizo el registro \n");
+                         }
+
+                     	     break;
+
+                    }  
+               }
+	      }
+        }
 	
+    }
 }
+
+

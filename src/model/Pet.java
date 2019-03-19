@@ -18,10 +18,13 @@ public class Pet{
      private double weight;
      private String kind;
 
+
      //Relaciones
 
      private ClinicRecord clinicR;
      private Time bornTime;
+     private Client owner;
+
 
      //Metodo constructor
 

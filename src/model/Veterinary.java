@@ -17,44 +17,48 @@ public class Veterinary{
 
      //Relaciones
 
-     private Client clients;
-     private Pet [] miniRoom;
+     private ArrayList <Client> clients;
+     private Room [] miniRoom;
+     private ArrayList <ClinicRecord> ClinicRecordAllVeterinary;
      
-
 
      //Metodo constructor
 
-     public Veterinary (String name, Client clients){
+     public Veterinary (String name){
 
          this.name = name;
-         miniRoom = new Pet [QUANTITY_ROOMS];
+         miniRoom = new Room [QUANTITY_ROOMS];
+         miniRoom [0] = new Room ("One", true);
+         miniRoom [1] = new Room ("Two", true);
+         miniRoom [2] = new Room ("Three", true);
+         miniRoom [3] = new Room ("Four", true);
+         miniRoom [4] = new Room ("Five", true);
+         miniRoom [5] = new Room ("Six", true);
+         miniRoom [6] = new Room ("Seven", true);
+         miniRoom [7] = new Room ("Eight", true);
      }
 
-     
-     //Metodo para añadir mascota a la habitacion
 
-     public String addPetToTheRoom (Pet petRegister){
+     //Metodo para verificar si el cliente esta registrado
 
-         boolean addMascota = false;
-         String msj = "";
+     public boolean checkIfClientExist (int registerClientId){
 
-         for (int i = 0; i < miniRoom.length && !addMascota; i++){
+        boolean findClient = false;
+        String msj = "";
 
-             if (miniRoom[i] != null){
+        for (int i = 0; i < clients.size() && !findClient; i++){
 
-                miniRoom [i] = petRegister;
-                msj = ("La mascota se registro con exito y fue agregada a la habitacion numero " + i + "\n");
-                addMascota = true;
-            }
+             if (clients.get(i).getId() == (registerClientId)){
 
-             else {
-                 msj = "La mascota no pudo ser registrada porque no hay habitaciones disponibles";
+               findClient = true;
             }
         }
-        
-        return msj;  
-         
+         return findClient;
      }
+     
+     //Metodo para añadir un cliente
+
+     //public String addClientToVeterinary
 
      //Get and set
 
@@ -66,19 +70,19 @@ public class Veterinary{
 	     this.name = name;
 	}
 
-    public Client getClients() {
-		 return clients;
-	}
+    public ArrayList getClients(){
+          return clients;
+     }
 
-    public void setClients (Client clients) {
-	     this.clients = clients;
-	}
+     public void setClients(ArrayList<Client> clients){
+          this.clients = clients;
+     }
 
-	public Pet[] getMiniRoom() {
+	public Room[] getMiniRoom() {
 		 return miniRoom;
 	}
 
-    public void setMiniRoom (Pet[] miniRoom) {
+    public void setMiniRoom (Room[] miniRoom) {
 	     this.miniRoom = miniRoom;
 	}
 

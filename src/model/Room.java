@@ -6,7 +6,8 @@ public class Room{
 
      //Atributos
 
-     private boolean mascota;
+     private boolean avaiable;
+     private String numberOfTheRoom;
 
      //Relaciones
 
@@ -15,20 +16,21 @@ public class Room{
 
      //Metodo constructor
    
-     public Room (boolean mascota, Pet petClient){
+     public Room (String numberOfTheRoom, boolean avaiable){
 
-         this.mascota = mascota;
+         this.numberOfTheRoom = numberOfTheRoom;
+         this.avaiable = avaiable;
          this.petClient = petClient;
     }
  
      //Get and set
 
-     public boolean getMascota(){
-     	return mascota;
+     public boolean getAvaiable(){
+     	return avaiable;
      }
 
-     public void setMascota (boolean mascota){
-         this.mascota = mascota;
+     public void setAvaiable (boolean avaiable){
+         this.avaiable = avaiable;
      }
 
      public Pet getPetClient(){
@@ -37,6 +39,14 @@ public class Room{
 
      public void setPetClient (Pet petClient){
          this.petClient = petClient;
+     }
+
+     public String getNumberOfTheRoom(){
+        return numberOfTheRoom;
+     }
+
+     public void setNumberOfTheRoom (String numberOfTheRoom){
+         this.numberOfTheRoom = numberOfTheRoom;
      }
 }
 
