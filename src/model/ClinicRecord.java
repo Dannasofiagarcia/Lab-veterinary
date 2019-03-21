@@ -6,10 +6,10 @@ public class ClinicRecord{
 
      //Atributos
 
-     private String clientName;
-     private int idOwner;
-     private String petName;
-     private ArrayList <ClinicHistory> clinicR;
+     //private String clientName;
+     //private int idOwner;
+     //private String petName;
+     private ArrayList <ClinicHistory> clinicH;
 
 
      //Relaciones
@@ -17,47 +17,26 @@ public class ClinicRecord{
 
      //Metodo constructor
 
-     public ClinicRecord (String clientName, int idOwner, String petName){
+     public ClinicRecord (){
 
-     	this.clientName = clientName;
-     	this.idOwner = idOwner;
-     	this.petName = petName;
-     	ArrayList <ClinicHistory> clinicR = new ArrayList <ClinicHistory>();
+     	 ArrayList <ClinicHistory> clinicH = new ArrayList <ClinicHistory>();
      }
 
 
-     //Get and set
+     //Metodo para agregar las historias clinicas
 
-     public String getClientName(){
-          return clientName;
+     public void addHistory (ClinicHistory nuevo){
+     	clinicH.add(nuevo);
      }
 
-     public void setClientName(String clientName){
-          this.clientName = clientName;
+     //Get and set 
+
+     public ArrayList getClinicH(){
+          return clinicH;
      }
 
-     public int getIdOwner(){
-          return idOwner;
-     }
-
-     public void setIdOwner(int idOwner){
-          this.idOwner = idOwner;
-     }
-
-     public String getPetName(){
-          return petName;
-     }
-
-     public void setPetName(String petName){
-          this.petName = petName;
-     }
-
-     public ArrayList getClinicR(){
-          return clinicR;
-     }
-
-     public void setClinicR(ArrayList<ClinicHistory> clinicR){
-          this.clinicR = clinicR;
+     public void setClinicH(ArrayList<ClinicHistory> clinicR){
+          this.clinicH = clinicH;
      }
 }
 

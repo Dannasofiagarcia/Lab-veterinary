@@ -45,6 +45,15 @@ public class Pet{
           this.name = name;
      }
 
+     public Client getOwner(){
+          return owner;
+     }
+
+     public void setOwner(Client owner){
+          this.owner = owner;
+     }
+
+
      public double getWeight(){
           return weight;
      }
@@ -68,6 +77,14 @@ public class Pet{
 
      public void setBornTime (Time bornTime){
           this.bornTime = bornTime;
+     }
+
+      public ClinicRecord getClinicR(){
+          return clinicR;
+     }
+
+     public void setClinicR (ClinicRecord clinicR){
+          this.clinicR = clinicR;
      }
 }
 

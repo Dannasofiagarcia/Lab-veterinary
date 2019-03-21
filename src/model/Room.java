@@ -22,6 +22,7 @@ public class Room{
          this.avaiable = avaiable;
          this.petClient = petClient;
     }
+
  
      //Get and set
 

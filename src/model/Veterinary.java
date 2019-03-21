@@ -19,7 +19,7 @@ public class Veterinary{
 
      private ArrayList <Client> clients;
      private Room [] miniRoom;
-     private ArrayList <ClinicRecord> ClinicRecordAllVeterinary;
+     private ArrayList <ClinicRecord> clinicRecordAllVeterinary;
      
 
      //Metodo constructor
@@ -36,6 +36,7 @@ public class Veterinary{
          miniRoom [5] = new Room ("Six", true);
          miniRoom [6] = new Room ("Seven", true);
          miniRoom [7] = new Room ("Eight", true);
+         ArrayList <ClinicRecord> clinicRecordAllVeterinary = new ArrayList <ClinicRecord>();
      }
 
 
@@ -48,17 +49,23 @@ public class Veterinary{
 
         for (int i = 0; i < clients.size() && !findClient; i++){
 
-             if (clients.get(i).getId() == (registerClientId)){
+             if (clients.get(i) != null){
 
-               findClient = true;
-            }
-        }
+                 if (clients.get(i).getId() == (registerClientId)){
+ 
+                  findClient = true;
+                 }
+             }
+         }   
          return findClient;
      }
      
-     //Metodo para añadir un cliente
+     //Metodo para agregar las historias clinicas
 
-     //public String addClientToVeterinary
+     public void addClient (Client nuevo){
+        clients.add(nuevo);
+     }
+
 
      //Get and set
 

@@ -5,21 +5,20 @@ import java.util.*;
 public class Client{
 
 
-     //Atributos
+      //Atributos
    
-     private String name;
-     private int id;
-     private String direction;
-     private int phoneNumber;
-     private ArrayList <Pet> pets;
+      private String name;
+      private int id;
+      private String direction;
+      private int phoneNumber;
 
      //Relaciones
 
-
+      private ArrayList <Pet> pets;
 
      //Metodo constructor
 
-     public Client (String name, int id, String direction, int phoneNumber){
+      public Client (String name, int id, String direction, int phoneNumber){
 
      	this.name = name;
      	this.id = id;
@@ -29,38 +28,44 @@ public class Client{
      }
 
 
+     //Metodo para agregarle la mascota a un cliente
+
+     public void addPet (Pet nuevo){
+          pets.add(nuevo);
+     }
+
  
      //Get and set
 
-     public String getName(){
+      public String getName(){
      	return name;
      }
 
-     public void setName(String name){
+      public void setName(String name){
      	this.name = name;
      }
 
-     public int getId(){
+      public int getId(){
      	return id;
      }
 
-     public void setId(int id){
+      public void setId(int id){
      	this.id = id;
      }
 
-     public String getDirection(){
+      public String getDirection(){
      	return direction;
      }
 
-     public void setDirection(String direction){
+      public void setDirection(String direction){
      	this.direction = direction;
      }
 
-     public int getPhoneNumber(){
+      public int getPhoneNumber(){
      	return phoneNumber;
      }
 
-     public void setPhoneNumber(int phoneNumber){
+      public void setPhoneNumber(int phoneNumber){
      	this.phoneNumber = phoneNumber;
      }
 
@@ -68,7 +73,7 @@ public class Client{
           return pets;
      }
 
-     public void setPets(ArrayList<Pet> pets){
+      public void setPets(ArrayList<Pet> pets){
           this.pets = pets;
      }
 }

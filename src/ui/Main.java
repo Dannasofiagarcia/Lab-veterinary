@@ -29,15 +29,53 @@ public class Main {
 	
 	     public void init() { 
 
-	         //myLittlePet = new Veterinary ("My Little Pet");
-	     } 
+	         myLittlePet = new Veterinary ("My Little Pet");
 
+	         Client clientCarolina = new Client ("Carolina Diaz", 783, "Street 87 44", 315623869);
+	         myLittlePet.addClient(clientCarolina);
+
+	         Pet petCoquito = new Pet ("Coquito", 3.0, "PET", new Time (2018, 10, 18));
+	         clientCarolina.addPet(petCoquito);
+	         petCoquito.setOwner(clientCarolina);
+
+	         ClinicRecord clinicRecordCoquito = new ClinicRecord();
+	         petCoquito.setClinicR(clinicRecordCoquito);
+
+	         ClinicHistory clinicHistory1Coquito = new ClinicHistory("OPEN", "Stranger body in the eye", "Blindness", new Time (2019, 03, 13), null);
+             clinicRecordCoquito.addHistory(clinicHistory1Coquito);
+
+             Medication coquitoMedication1 = new Medication("Ocucan", 15.0, 23.8, "Once in a day");
+            clinicHistory1Coquito.addMedicine(coquitoMedication1);
+
+         
+	         Client clientJames = new Client ("James Gonzalez", 985, "Street 34 65", 317890453);
+	         myLittlePet.addClient(clientJames);
+
+	         Pet petRoberto = new Pet ("Roberto", 0.8, "BIRD", new Time (2018, 10, 18));
+	         clientJames.addPet(petRoberto);
+	         petRoberto.setOwner(clientJames);
+
+	         ClinicRecord clinicRecordRoberto = new ClinicRecord();
+	         petCoquito.setClinicR(clinicRecordCoquito);
+
+	         ClinicHistory clinicHistory1Roberto = new ClinicHistory ("OPEN", "Lack of appetite", "Parasites", new Time (2019, 01, 2), null);
+	         clinicRecordRoberto.addHistory(clinicHistory1Roberto);
+
+	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 36.5, "Twice in a day");
+	         clinicHistory1Roberto.addMedicine(robertoMedication1);
+
+
+
+	     } 
+     
 
 
 
 	     //Mostramos las opciones del menu
 	
 	     public void showOptions() {
+
+
 		
 	         System.out.println ("Bienvenido a la veterinaria My Little Pet");
 
@@ -49,17 +87,19 @@ public class Main {
 
              System.out.println ("3. Para hospitalizar una mascota");
 
-	         System.out.println ("2. Para ver disponibilidad en las habitaciones");
+             System.out.println ("4. Para dar de alta a una mascota");
 
-	         System.out.println ("3. Para ver el historial clinico de la mascota");
+	         System.out.println ("5. Para ver disponibilidad en las habitaciones");
 
-	         System.out.println ("4. Para calcular el costo de la hospitalizacion");
+	         System.out.println ("6. Para ver el historial clinico de la mascota");
 
-	         System.out.println ("5. Para ver la informacion de contacto");
+	         System.out.println ("7. Para calcular el costo de la hospitalizacion");
 
-	         System.out.println ("6. Para conocer los ingresos por conceptos de hospitalizacion");
+	         System.out.println ("8. Para ver la informacion de contacto");
 
-	         System.out.println ("7. Salir");
+	         System.out.println ("9. Para conocer los ingresos por conceptos de hospitalizacion");
+
+	         System.out.println ("10. Salir");
     
 	     }  
 
@@ -69,7 +109,7 @@ public class Main {
 		
 	     int userInput = 0;
 	  
-	     while(userInput != 7){
+	     while(userInput != 10){
 	
 		     showOptions();	
 	         userInput = reader.nextInt();
@@ -81,6 +121,7 @@ public class Main {
 
              System.out.println ("Ingrese el id del cliente");
              int registerClientId = reader.nextInt();
+             reader.nextLine();
 
                  if (myLittlePet.checkIfClientExist(registerClientId) == false){
 

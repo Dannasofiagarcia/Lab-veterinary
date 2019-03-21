@@ -12,8 +12,8 @@ public class ClinicHistory{
 
      //Atributos
 
-	 private double weight;
-	 private String type;
+	 //private double weight
+
 	 private String status;
 	 private String symptom;
 	 private String diagnosis;
@@ -27,34 +27,23 @@ public class ClinicHistory{
 
      //Metodo constructor
 
-     public ClinicHistory (double weight, String type, String status, String symptom, String diagnosis, Time admisionDate, Time offDate){
+     public ClinicHistory (String status, String symptom, String diagnosis, Time admisionDate, Time offDate){
 
-         this.weight = weight;
-         this.type = type;
          this.status = status;
          this. symptom = symptom;
          this.diagnosis = diagnosis;
          ArrayList <Medication> prescriptionMedications = new ArrayList <Medication>();
      }
 
- 
+
+     //Metodo para agregar los medicamentos
+
+     public void addMedicine (Medication nuevo){
+     	prescriptionMedications.add(nuevo);
+     }
+
+
      //Get and set
-
-     public double getWeight(){
-          return weight;
-     }
-
-     public void setWeight(double weight){
-          this.weight = weight;
-     }
-
-     public String getType(){
-          return type;
-     }
-
-     public void setType(String type){
-          this.type = type;
-     }
 
      public String getStatus(){
           return status;
@@ -94,6 +83,14 @@ public class ClinicHistory{
 
      public void setOffDate(Time offDate){
           this.offDate = offDate;
+     }
+
+     public ArrayList getPrescriptionMedication(){
+          return prescriptionMedications;
+     }
+
+     public void setPrescriptionMedication(ArrayList<Medication> prescriptionMedications){
+          this.prescriptionMedications = prescriptionMedications;
      }
 }
 
