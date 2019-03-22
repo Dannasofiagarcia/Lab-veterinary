@@ -35,6 +35,26 @@ public class Client{
      }
 
  
+      //Metodo para buscar a la mascota
+
+      public Pet findPet (String registerPetName){
+
+          Pet petThatImFinding = null;
+          boolean found = false;
+
+          for (int i= 0; i < pets.size() && !found; i++){
+
+                if (pets.get(i).getName().equals(registerPetName)){
+                    petThatImFinding = pets.get(i);
+                    found = true;
+
+                }
+          }
+
+          return petThatImFinding; 
+     }
+
+ 
      //Get and set
 
       public String getName(){

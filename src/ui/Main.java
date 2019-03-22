@@ -47,6 +47,8 @@ public class Main {
              Medication coquitoMedication1 = new Medication("Ocucan", 15.0, 23.8, "Once in a day");
             clinicHistory1Coquito.addMedicine(coquitoMedication1);
 
+            myLittlePet.getMiniRoom()[0].setPetClient(petCoquito);
+
          
 	         Client clientJames = new Client ("James Gonzalez", 985, "Street 34 65", 317890453);
 	         myLittlePet.addClient(clientJames);
@@ -64,11 +66,11 @@ public class Main {
 	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 36.5, "Twice in a day");
 	         clinicHistory1Roberto.addMedicine(robertoMedication1);
 
+	         myLittlePet.getMiniRoom()[1].setPetClient(petRoberto);
 
 
 	     } 
      
-
 
 
 	     //Mostramos las opciones del menu
@@ -142,6 +144,7 @@ public class Main {
                              reader.nextLine();
 
                              Client registerClient = new Client (registerClientName, registerClientId, registerClientDirection, registerNumberPhoneClient);
+                             myLittlePet.addClient(registerClient);
 
                              System.out.println ("Cliente registrado con exito \n");
                              System.out.println ("¿Desea registrar una mascota? \n 1. Sí, registrarla \n 2. No, no la deseo registrar");
@@ -194,6 +197,16 @@ public class Main {
                
                                      Time birthDate = new Time (birthYear, birthMonth, birthDay);
                                      Pet petRegister = new Pet (registerPetName, registerPetWeight, kind, birthDate);
+                                     registerClient.addPet(petRegister);
+                                     petRegister.setOwner(registerClient);
+
+
+                                     System.out.println ("¿Desea hospitalizar la mascota? \n 1. Sí, hospitalizar \n 2. No, no hospitalizar");
+                                     int hospitalizationSelection = reader.nextInt();
+                                     reader.nextLine();
+
+                                     System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
+
 
 
                                  }
@@ -206,7 +219,7 @@ public class Main {
 
                     }  
                }
-	      }
+	        }
         }
 	
     }

@@ -60,11 +60,62 @@ public class Veterinary{
          return findClient;
      }
      
-     //Metodo para agregar las historias clinicas
+     //Metodo para agregar los clientes a la veterinaria
 
      public void addClient (Client nuevo){
-        clients.add(nuevo);
-     }
+         if (nuevo != null){
+         clients.add(nuevo);
+         }
+     }  
+    
+
+     //Metodo para hospitalizar una mascota
+
+     public String hospitalization (int registerClientId, String registerPetName){
+
+         String msg = "";
+         Pet p = null;
+
+         for (int i = 0; i < clients.size() && p == null; i++){
+
+             if (clients.get(i).getId() == (registerClientId)){
+                     p = clients.get(i).findPet(registerPetName);
+
+                 if (p == null){
+                     msg = "El cliente no tiene una mascota con ese nombre";
+                 }
+             }
+         }
+         if (p!=null){
+             msg = addPetToAvaiableRoom(p);
+         }
+         return msg;
+    }
+
+
+     //Metodo para ver si una habitacion esta disponible
+
+         public String addPetToAvaiableRoom(Pet current){
+
+             boolean found = false;
+             String msg = "";
+
+             for (int i = 0; i < miniRoom.length && !found; i++){
+                 if (miniRoom[i].getAvaiable() == true){
+
+                    miniRoom[i].setPetClient(current);
+                    found = true;
+                    miniRoom[i].setAvaiable(false);
+                    msg = ("Se ha agregado " + current.getName() + " a la habitacion " + miniRoom[i].getNumberOfTheRoom() + "correctamente");
+                 }
+
+                 else {
+                    msg = "No hay habitaciones disponibles, no se ha podido agregar a la mascota a la habitacion";
+                 }
+             }
+
+             return msg;
+         }
 
 
      //Get and set
