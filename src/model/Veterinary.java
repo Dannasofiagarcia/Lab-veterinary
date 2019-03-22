@@ -118,6 +118,27 @@ public class Veterinary{
          }
 
 
+
+     //Metodo para buscar el dueño de una mascota registrada
+
+     public Client findTheOwnerOfThePet (int registerClientId1){
+
+        boolean findOwner = false;
+        Client ownerOfThePet = null;
+
+        for (int i = 0; i < clients.size() && !findOwner; i++){
+
+             if (clients.get(i).getId() == registerClientId1){
+
+                 ownerOfThePet = clients.get(i);
+                 findOwner = true;
+            }
+             
+         }
+         return ownerOfThePet;
+    }
+
+
      //Get and set
 
      public String getName() {
