@@ -24,7 +24,7 @@ public class Client{
      	this.id = id;
      	this.direction = direction;
      	this.phoneNumber = phoneNumber;
-     	ArrayList <Pet> pets = new ArrayList <Pet>();
+     	pets = new ArrayList <Pet>();
      }
 
 
@@ -55,6 +55,53 @@ public class Client{
      }
 
  
+      //Metodo para mostrar el nombre de las mascotas
+
+      public String showInformationPets (){
+
+           String msg = "";
+           for (int i = 0; i < pets.size(); i++){
+
+                msg = (pets.get(i).getName());
+          }
+
+          return msg;
+      }
+
+      //Metodo para mostrar las mascotas disponibles
+
+      public String showPetsAvaiable (){
+
+          String msg = "";
+
+          for (int i = 0; i < pets.size(); i++){
+
+          msg += (pets.get(i).getName());
+          }
+
+           return msg;
+      }
+
+      //Metodo para ver que mascota selecciono el usuario
+
+      public String showWhatUserSelected (String selectionPetsAvaiable){
+
+          Pet petSelected = null;
+          boolean found = false;
+          String msg = "";
+     
+           for (int i= 0; i <pets.size() && !found; i++){
+               if(selectionPetsAvaiable.equals(pets.get(i).getName())){
+
+                     found = true;
+                     msg += (pets.get(i).getClinicR().showInformationClinicHistory());
+               }
+          }
+          
+           return msg;
+      }
+
+
      //Get and set
 
       public String getName(){

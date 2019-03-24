@@ -35,6 +35,8 @@ public class Pet{
      	this.kind = kind;
      }
 
+
+
      //Get and set
 
       public String getName(){

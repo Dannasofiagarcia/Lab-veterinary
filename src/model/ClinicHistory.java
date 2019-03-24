@@ -32,7 +32,7 @@ public class ClinicHistory{
          this.status = status;
          this. symptom = symptom;
          this.diagnosis = diagnosis;
-         ArrayList <Medication> prescriptionMedications = new ArrayList <Medication>();
+         prescriptionMedications = new ArrayList <Medication>();
      }
 
 
@@ -41,8 +41,22 @@ public class ClinicHistory{
      public void addMedicine (Medication nuevo){
      	prescriptionMedications.add(nuevo);
      }
+     
 
+     //Metodo para ver los medicamentos recetados
 
+     public String showInformationAboutMedicine(){
+
+     	String msg = "";
+
+     	 for (int i = 0; i < prescriptionMedications.size(); i++){
+
+     	 	 msg += ("MEDICAMENTO RECETADO" + "\n" + "El nombre del medicamento es " + prescriptionMedications.get(i).getName() + "\n" + "La dosis del medicamento es " + prescriptionMedications.get(i).getDose() + "\n" + "El costo por dosis del medicamento es " + prescriptionMedications.get(i).getDoseCost() + "\n" + "La frecuencia del medicamento es " + prescriptionMedications.get(i).getAdministrationFrecuency() + "\n" + "\n");
+     	 }
+         return msg;
+     }
+
+    
      //Get and set
 
      public String getStatus(){

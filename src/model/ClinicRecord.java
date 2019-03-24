@@ -19,7 +19,31 @@ public class ClinicRecord{
 
      public ClinicRecord (){
 
-     	 ArrayList <ClinicHistory> clinicH = new ArrayList <ClinicHistory>();
+     	 clinicH = new ArrayList <ClinicHistory>();
+     }
+
+     //Metodo para mostrar la informacion de las historias clinicas
+
+
+     public String showInformationClinicHistory (){
+
+     	 String msg = "";
+
+     	 for (int i = 0; i < clinicH.size(); i++){
+
+     	 	 if (clinicH != null){
+
+     	 	 msg = ("\n" + "HISTORIA CLINICA" + "\n" + "La fecha de ingreso es " + clinicH.get(i).getAdmisionDate() + "\n" + "El status es " + clinicH.get(i).getStatus() + "\n" + "Los sintomas de la mascota son " + clinicH.get(i).getSymptom() + "\n" + "El diagnostico de la mascota es " + clinicH.get(i).getDiagnosis() + "\n" + "\n" + clinicH.get(i).showInformationAboutMedicine());
+
+             }
+
+             else {
+
+             	msg = "La mascota no tiene historia clinica";
+             }
+     	}
+
+     	return msg;
      }
 
 

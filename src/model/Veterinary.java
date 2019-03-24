@@ -28,15 +28,16 @@ public class Veterinary{
 
          this.name = name;
          miniRoom = new Room [QUANTITY_ROOMS];
-         miniRoom [0] = new Room ("One", true);
-         miniRoom [1] = new Room ("Two", true);
-         miniRoom [2] = new Room ("Three", true);
-         miniRoom [3] = new Room ("Four", true);
-         miniRoom [4] = new Room ("Five", true);
-         miniRoom [5] = new Room ("Six", true);
-         miniRoom [6] = new Room ("Seven", true);
-         miniRoom [7] = new Room ("Eight", true);
-         ArrayList <ClinicRecord> clinicRecordAllVeterinary = new ArrayList <ClinicRecord>();
+         miniRoom [0] = new Room ("uno", true);
+         miniRoom [1] = new Room ("dos", true);
+         miniRoom [2] = new Room ("tres", true);
+         miniRoom [3] = new Room ("cuatro", true);
+         miniRoom [4] = new Room ("cinco", true);
+         miniRoom [5] = new Room ("seis", true);
+         miniRoom [6] = new Room ("siete", true);
+         miniRoom [7] = new Room ("ocho", true);
+         clinicRecordAllVeterinary = new ArrayList <ClinicRecord>();
+         clients = new ArrayList <Client>();
      }
 
 
@@ -139,6 +140,81 @@ public class Veterinary{
     }
 
 
+     //Metodo para ver los clientes registrados en la veterinaria
+
+    public String showInformationOfTheClients(){
+
+        String msg = "";
+
+        for (int i = 0; i<clients.size(); i++){
+
+            msg += ("El nombre del cliente es " + clients.get(i).getName() + "\n" + "El id del cliente es " + clients.get(i).getId() + "\n" + "La direccion del cliente es " + clients.get(i).getDirection() + "\n" + "El numero de telefono del cliente es " + clients.get(i).getPhoneNumber() + "\n" + "El cliente tiene la(s) siguiente(s) mascota(s) " + clients.get(i).showInformationPets() + "\n" + "\n");
+        }
+        return msg;
+
+    }
+
+
+     //Metodo para buscar las mascotas de todos los clientes
+
+     public String showPetsThatAreAvaiable (){
+
+         String msg = "";
+         int indice = 1;
+         for (int i = 0; i < clients.size(); i++){
+
+         msg += (clients.get(i).showPetsAvaiable() + "\n");
+         }
+
+         return msg;
+
+    }
+
+
+     //Metodo para buscar la mascota que el usuario desea ver entre las mascotas de todos los clientes
+
+     public String showInformationOfTheClinicR (String selectionPetsAvaiable){
+
+         boolean found = false;
+         String msg = "";
+
+         for (int i = 0; i < clients.size(); i++){
+
+                msg += (clients.get(i).showWhatUserSelected(selectionPetsAvaiable) + "\n");
+        }
+
+    return msg;
+
+            
+    }    
+
+    
+    //Metodo para mostrar la informacion de las habitaciones
+
+
+     public String showRoomsInformation (){
+
+         String msg = "";
+
+        for (int i = 0; i < miniRoom.length; i++){
+
+            if (miniRoom[i].getAvaiable() == false){
+
+                 msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " esta ocupada y se encuentra la mascota " + miniRoom[i].getPetClient().getName() + "\n" + "\n");
+             }
+
+             else {
+
+                 msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " esta disponible, no se encuentra ninguna mascota" + "\n" + "\n");
+             }
+             
+         }
+
+         return msg;
+
+    }
+
+    
      //Get and set
 
      public String getName() {
