@@ -160,7 +160,9 @@ public class Main {
 
                  if (myLittlePet.checkIfClientExist(registerClientId) == true){
                  	 System.out.println ("Usted ya se encuentra registrado en el sistema");
-                 }else{
+                 }
+				 
+				 else{
 
              	     System.out.println ("Su id no existe en el sistema, desea registrarse?");
              	     System.out.println ("1. Deseo registrarme" + "\n" + "2. No deseo registrarme" + "\n");
@@ -183,7 +185,7 @@ public class Main {
                          myLittlePet.addClient(registerClient);
 
                          System.out.println ("Cliente registrado con exito \n");
-                         System.out.println ("¿Desea registrar una mascota? \n 1. Si, registrarla \n 2. No, no la deseo registrar");
+                         System.out.println ("Desea registrar una mascota? \n 1. Si, registrarla \n 2. No, no la deseo registrar");
                          int registerAPetSelection = reader.nextInt();
                          reader.nextLine();
 
@@ -198,7 +200,7 @@ public class Main {
                          int selectionKind = reader.nextInt();
                          reader.nextLine();
 
-                         System.out.println ("Ingrese el peso de la mascota");
+                         System.out.println ("Ingrese el peso de la mascota (recuerde que debe ir con coma, por ejemplo 3,0)");
                          double registerPetWeight = reader.nextDouble();
                          reader.nextLine();
 
@@ -246,34 +248,106 @@ public class Main {
 
                          if (hospitalizationSelection == 1){
 
+                             System.out.println ("Ingrese los sintomas que presenta la mascota");
+                             String symptomsSelected = reader.nextLine();
+
+                             System.out.println ("Ingrese el diagnostico de la mascota");
+                             String diagnosisSelected = reader.nextLine();
+
+                             System.out.println ("Ingrese el dia en el que ingreso la mascota");
+                             int admisionDay = reader.nextInt();
+                             reader.nextLine();
+
+                             System.out.println ("Ingrese el mes en el que ingreso la mascota");
+                             int admisionMonth = reader.nextInt();
+                             reader.nextLine();
+
+                             System.out.println ("Ingrese el año en el que ingreso la mascota");
+                             int admisionYear = reader.nextInt();
+                             reader.nextLine();
+
+
+                         ClinicRecord clinicPetRegister = new ClinicRecord();
+                         petRegister.setClinicR(clinicPetRegister);
+
+                         Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
+                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+
+                         clinicPetRegister.addHistory(historyPetRegister);
+
+
+                             System.out.println ("La mascota tiene medicamentos recetados? \n 1. Si \n 2. No");
+                             int medicineSelection = reader.nextInt();
+                             reader.nextLine();
+
+                                 if (medicineSelection == 1){
+
+                                     System.out.println ("Ingrese el nombre del medicamento");
+                                     String nameMedicineSelected = reader.nextLine();
+
+                                     System.out.println ("Ingrese la dosis del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                                     double doseMedicineSelected = reader.nextDouble();
+                                     reader.nextLine();
+
+                                     System.out.println ("Ingrese el costo del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                                     double costDoseMedicineSelected = reader.nextDouble();
+                                     reader.nextLine();
+                                    
+                                     System.out.println ("Ingrese la frecuencia del medicamento (por ejemplo, dos veces al dia)");
+                                     String medicineFrecuencySelected = reader.nextLine();
+
+                                Medication petRegisterMedication = new Medication (nameMedicineSelected, doseMedicineSelected, costDoseMedicineSelected, medicineFrecuencySelected);
+                                historyPetRegister.addMedicine(petRegisterMedication);
+
+
+                                 }
+
+                                 else if (medicineSelection == 2){
+
+                                     System.out.println ("No se agrego ningun medicamento a la historia clinica de la mascota");
+                                 }
+                                     
+
                              System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
 
-                         }
+                         } //cierra el if si se quiere hospitalizar la mascota
 
                          else if (hospitalizationSelection == 2){
 
                          	 System.out.println ("No se pudo hacer la hospitalizacion \n");
                          
                          }
-                        
+
+					} //cierra el if de registrar a una mascota
+
                          if(registerAPetSelection == 2){
 
                              System.out.println ("No se realizo el registro \n");
 
                         }
-                     } else{
+
+					 } //cierra el si se quiere registrar
+					 
+                      else{
 
                          	 System.out.println ("No se realizo el registro \n");
                          }
+
+
                          
 
-                     break;
-                    }  
-               }
+                     
+               } //cierra el if si no esta registrado
+			   
+			 break;
 
-             case 6: 
+             case 5: 
 
-             System.out.println ("Ingrese el id del cliente");
+             System.out.println ("Los siguientes son los clientes registrados en la veterinaria y sus respectivos id");
+             System.out.println (myLittlePet.showClientsAvaiable());
+
+
+             System.out.println ("Ingrese el id del cliente al que desea registrarle una nueva mascota");
              registerClientId = reader.nextInt();
              reader.nextLine();
 
@@ -286,7 +360,7 @@ public class Main {
                     int selectionKind = reader.nextInt();
                     reader.nextLine();
 
-                    System.out.println ("Ingrese el peso de la mascota");
+                    System.out.println ("Ingrese el peso de la mascota (recuerde que debe ir con coma, por ejemplo 3,0)");
                     double registerPetWeight = reader.nextDouble();
 
                                      
@@ -312,47 +386,108 @@ public class Main {
                     int birthDay = reader.nextInt();
                      reader.nextLine();
 
-                                     System.out.println ("Ingrese el mes de nacimiento de la mascota");
-                                     int birthMonth = reader.nextInt();
-                                     reader.nextLine();
+                    System.out.println ("Ingrese el mes de nacimiento de la mascota");
+                    int birthMonth = reader.nextInt();
+                    reader.nextLine();
 
-                                     System.out.println ("Ingrese el año de nacimiento de la mascota");
-                                     int birthYear = reader.nextInt();
-                                     reader.nextLine();
+                    System.out.println ("Ingrese el año de nacimiento de la mascota");
+                    int birthYear = reader.nextInt();
+                    reader.nextLine();
                
-                                     Time birthDate = new Time (birthYear, birthMonth, birthDay);
-                                     Pet petRegister1 = new Pet (registerPetName, registerPetWeight, kind, birthDate);
+                    Time birthDate = new Time (birthYear, birthMonth, birthDay);
+                    Pet petRegister = new Pet (registerPetName, registerPetWeight, kind, birthDate);
           
-                                     myLittlePet.findTheOwnerOfThePet(registerClientId).addPet(petRegister1);
-                                     petRegister1.setOwner(myLittlePet.findTheOwnerOfThePet(registerClientId));
+                    myLittlePet.findTheOwnerOfThePet(registerClientId).addPet(petRegister);
+                    petRegister.setOwner(myLittlePet.findTheOwnerOfThePet(registerClientId));
 
 
-                                     System.out.println ("Desea hospitalizar la mascota? \n 1. Sí, hospitalizar \n 2. No, no hospitalizar");
-                                     int hospitalizationSelection = reader.nextInt();
+                    System.out.println ("Desea hospitalizar la mascota? \n 1. Sí, hospitalizar \n 2. No, no hospitalizar");
+                    int hospitalizationSelection = reader.nextInt();
+                    reader.nextLine();
+
+                    if (hospitalizationSelection == 1){
+
+                             System.out.println ("Ingrese los sintomas que presenta la mascota");
+                             String symptomsSelected = reader.nextLine();
+
+                             System.out.println ("Ingrese el diagnostico de la mascota");
+                             String diagnosisSelected = reader.nextLine();
+
+                             System.out.println ("Ingrese el dia en el que ingreso la mascota");
+                             int admisionDay = reader.nextInt();
+                             reader.nextLine();
+
+                             System.out.println ("Ingrese el mes en el que ingreso la mascota");
+                             int admisionMonth = reader.nextInt();
+                             reader.nextLine();
+
+                             System.out.println ("Ingrese el año en el que ingreso la mascota");
+                             int admisionYear = reader.nextInt();
+                             reader.nextLine();
+
+
+                         ClinicRecord clinicPetRegister = new ClinicRecord();
+                         petRegister.setClinicR(clinicPetRegister);
+
+                         Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
+                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+
+                         clinicPetRegister.addHistory(historyPetRegister);
+
+
+                             System.out.println ("La mascota tiene medicamentos recetados? \n 1. Si \n 2. No");
+                             int medicineSelection = reader.nextInt();
+                             reader.nextLine();
+
+                                 if (medicineSelection == 1){
+
+                                     System.out.println ("Ingrese el nombre del medicamento");
+                                     String nameMedicineSelected = reader.nextLine();
+
+                                     System.out.println ("Ingrese la dosis del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                                     double doseMedicineSelected = reader.nextDouble();
                                      reader.nextLine();
 
-                                     if (hospitalizationSelection == 1){
+                                     System.out.println ("Ingrese el costo del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                                     double costDoseMedicineSelected = reader.nextDouble();
+                                     reader.nextLine();
+                                    
+                                     System.out.println ("Ingrese la frecuencia del medicamento (por ejemplo, dos veces al dia)");
+                                     String medicineFrecuencySelected = reader.nextLine();
 
-                                     System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
-                                     }
+                                Medication petRegisterMedication = new Medication (nameMedicineSelected, doseMedicineSelected, costDoseMedicineSelected, medicineFrecuencySelected);
+                                historyPetRegister.addMedicine(petRegisterMedication);
 
 
-                                     else if (hospitalizationSelection == 2){
+                                 }
 
-                                      System.out.println ("No se realizo la hospitalizacion \n");	
-                                     }
+                                 else if (medicineSelection == 2){
 
-                 }
+                                     System.out.println ("No se agrego ningun medicamento a la historia clinica de la mascota");
+                                 }
+                                     
+
+                             System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
+
+                         } //cierra el if si se quiere hospitalizar la mascota
+
+                         else if (hospitalizationSelection == 2){
+
+                             System.out.println ("No se pudo hacer la hospitalizacion \n");
+                         
+                         }
+                    } //cierra la verificacion de si el cliente se encuentra registrado
+
 
              break;
 
               
-	        }
+	        } //cierra el switch
 
-
-        }
+        } //cierra el while
 	
-    }
-}
+    } //cierra el showMenu
+
+} //cierra el main 
 
 

@@ -13,7 +13,7 @@ public class Medication{
 
      //Metodo constructor
 
-     public Medication (String name, double dose, double doseCosto, String administrationFrecuency){
+     public Medication (String name, double dose, double doseCost, String administrationFrecuency){
 
      	this.name = name;
      	this.dose = dose;

@@ -107,7 +107,7 @@ public class Veterinary{
                     miniRoom[i].setPetClient(current);
                     found = true;
                     miniRoom[i].setAvaiable(false);
-                    msg = ("Se ha agregado " + current.getName() + " a la habitacion " + miniRoom[i].getNumberOfTheRoom() + "correctamente");
+                    msg = ("Se ha agregado " + current.getName() + " a la habitacion " + miniRoom[i].getNumberOfTheRoom() + " correctamente");
                  }
 
                  else {
@@ -149,6 +149,20 @@ public class Veterinary{
         for (int i = 0; i<clients.size(); i++){
 
             msg += ("El nombre del cliente es " + clients.get(i).getName() + "\n" + "El id del cliente es " + clients.get(i).getId() + "\n" + "La direccion del cliente es " + clients.get(i).getDirection() + "\n" + "El numero de telefono del cliente es " + clients.get(i).getPhoneNumber() + "\n" + "El cliente tiene la(s) siguiente(s) mascota(s) " + clients.get(i).showInformationPets() + "\n" + "\n");
+        }
+        return msg;
+
+    }
+
+    //Metodo para mostrar los clientes registrados disponibles en la veterinaria 
+
+    public String showClientsAvaiable(){
+
+        String msg = "";
+
+        for (int i = 0; i<clients.size(); i++){
+
+            msg += ("El nombre del cliente es " + clients.get(i).getName() + "\n" + "El id del cliente es " + clients.get(i).getId() + "\n" + "\n");
         }
         return msg;
 

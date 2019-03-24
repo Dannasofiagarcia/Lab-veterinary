@@ -62,7 +62,7 @@ public class Client{
            String msg = "";
            for (int i = 0; i < pets.size(); i++){
 
-                msg = (pets.get(i).getName());
+                msg += (pets.get(i).getName());
           }
 
           return msg;
