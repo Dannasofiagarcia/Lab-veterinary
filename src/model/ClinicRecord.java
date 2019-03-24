@@ -46,6 +46,43 @@ public class ClinicRecord{
      	return msg;
      }
 
+      //Metodo para calcular los dias de hospitalizacion de una mascota
+    
+     public int hospitalizationDays (){
+
+     	int days = 0;
+
+     	for (int i = 0; i < clinicH.size(); i++){
+
+     		 if (clinicH.get(i).getStatus().equals("CLOSED")){
+
+     		 	 days = clinicH.get(i).admisionDateInOnlyDays();
+
+     		 }
+     	}
+
+     	return days;
+     }
+
+     //Metodo para asignar
+
+     public ClinicHistory showClinicHistory (){
+
+     	ClinicHistory historyC = null;
+
+     	for (int i = 0; i < clinicH.size(); i++){
+
+     		if (clinicH.get(i).getStatus().equals("OPEN")){
+               
+              historyC = clinicH.get(i);
+
+     	    }
+     	 }
+
+     	return historyC;
+
+
+    }
 
      //Metodo para agregar las historias clinicas
 
@@ -62,6 +99,8 @@ public class ClinicRecord{
      public void setClinicH(ArrayList<ClinicHistory> clinicR){
           this.clinicH = clinicH;
      }
-}
+
+
+ } //Cierra la clase
 
 

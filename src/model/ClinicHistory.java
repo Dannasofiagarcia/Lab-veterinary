@@ -56,6 +56,24 @@ public class ClinicHistory{
          return msg;
      }
 
+
+     //Metodo para convertir la fecha de ingreso solo a dias
+
+     public int admisionDateInOnlyDays (){
+
+         int admisionDays = 0;
+         int offDays = 0;
+         int totalDays = 0;
+
+         admisionDays = (((admisionDate.getMonth()-1)*30) + admisionDate.getDay());
+
+         offDays = (((offDate.getMonth()-1)*30) + offDate.getDay());
+
+         totalDays = offDays-admisionDays;
+
+         return totalDays;
+     }
+
     
      //Get and set
 

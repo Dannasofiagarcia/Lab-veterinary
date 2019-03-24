@@ -36,6 +36,121 @@ public class Pet{
      }
 
 
+     //Costo hospitalizacion
+
+     public double costHospitalization (){
+
+          double cost = 0;
+
+           if (kind == "CAT"){
+
+                if (weight >= 1.0 && weight <= 3.0){
+
+                    cost = 10.0 * getClinicR().hospitalizationDays();
+                }
+
+                else if (weight >= 3.1 && weight <= 10.0){
+
+                    cost = 12.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight >= 10.1 && weight <= 20.0){
+
+                    cost = 15.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight > 20.0){
+
+                    cost = 20.0 * getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de cat
+
+           else if (kind == "DOG"){
+
+                if (weight >= 1.0 && weight <= 3.0){
+
+                    cost = 15.0 * getClinicR().hospitalizationDays();
+                }
+
+                else if (weight >= 3.1 && weight <= 10.0){
+
+                    cost = 17.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight >= 10.1 && weight <= 20.0){
+
+                    cost = 20.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight > 20.0){
+
+                    cost = 25.0 * getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de dog
+
+
+           else if (kind == "BIRD"){
+
+                if (weight >= 1.0 && weight <= 3.0){
+
+                    cost = 10.0 * getClinicR().hospitalizationDays();
+                }
+
+                else if (weight >= 3.1 && weight <= 10.0){
+
+                    cost = 12.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight >= 10.1 && weight <= 20.0){
+
+                    cost = 20.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight > 20.0){
+
+                    cost = 25.0 * getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de bird
+
+
+           else if (kind == "OTHER"){
+
+                if (weight >= 1.0 && weight <= 3.0){
+
+                    cost = 10.0 * getClinicR().hospitalizationDays();
+                }
+
+                else if (weight >= 3.1 && weight <= 10.0){
+
+                    cost = 17.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight >= 10.1 && weight <= 20.0){
+
+                    cost = 30.0 * getClinicR().hospitalizationDays();
+
+                }
+
+                else if (weight > 20.0){
+
+                    cost = 30.0 * getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de other
+
+           return cost;
+     }
+
 
      //Get and set
 

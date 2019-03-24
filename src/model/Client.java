@@ -102,6 +102,41 @@ public class Client{
       }
 
 
+      //Metodo para devolver la mascota que el cliente selecciono
+
+       //Metodo para ver que mascota selecciono el usuario
+
+      public Pet showWhatUserSelectedForHospitalization (String petForHospitalization){
+
+          Pet pet = null;
+          boolean found = false;
+
+           for (int i= 0; i <pets.size() && !found; i++){
+               if(petForHospitalization.equals(pets.get(i).getName())){
+
+                     found = true;
+                     pet = pets.get(i);
+               }
+          }
+          
+           return pet;
+      }
+
+      //Metodo para calcular el costo de hospitalizacion
+
+      public double costHospitalizationOfThePet (){
+
+          double cost = 0;
+
+           for (int i = 0; i < pets.size(); i++){
+
+                cost = pets.get(i).costHospitalization();
+           }
+
+           return cost;
+     }
+
+
      //Get and set
 
       public String getName(){

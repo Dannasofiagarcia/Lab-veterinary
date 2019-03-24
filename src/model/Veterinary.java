@@ -93,6 +93,30 @@ public class Veterinary{
          return msg;
     }
 
+     //Metodo para hospitalizar una mascota ya registrada
+
+     public String hospitalizationRegisterPet (String petForHospitalization, int registerClientId){
+
+         String msg = "";
+         Pet p = null;
+
+         for (int i = 0; i < clients.size() && p == null; i++){
+
+             if (clients.get(i).getId() == (registerClientId)){
+                     p = clients.get(i).showWhatUserSelectedForHospitalization(petForHospitalization);
+
+                 if (p == null){
+                     msg = "El cliente no tiene una mascota con ese nombre";
+                 }
+             }
+         }
+         if (p!=null){
+             msg = addPetToAvaiableRoom(p);
+         }
+         return msg;
+    }
+
+
 
      //Metodo para ver si una habitacion esta disponible
 
@@ -107,6 +131,7 @@ public class Veterinary{
                     miniRoom[i].setPetClient(current);
                     found = true;
                     miniRoom[i].setAvaiable(false);
+                    miniRoom[i].setClinicHistoryOfThePet(current.getClinicR().showClinicHistory());
                     msg = ("Se ha agregado " + current.getName() + " a la habitacion " + miniRoom[i].getNumberOfTheRoom() + " correctamente");
                  }
 
@@ -185,6 +210,32 @@ public class Veterinary{
     }
 
 
+    //Metodo para mostrar las mascotas de un cliente especifico
+
+    public String showPetsOfClient (int registerClientId){
+
+        Client clientLookingFor = null;
+        boolean found = false;
+        String msg = "";
+
+        for (int i = 0; i <clients.size() && !found; i++){
+
+              if (clients.get(i).getId() == registerClientId){
+
+                  clientLookingFor = clients.get(i);
+                  found = true;
+                  msg = (clientLookingFor.showInformationPets());
+              }
+
+        }
+
+        return msg;
+
+    }
+
+
+
+
      //Metodo para buscar la mascota que el usuario desea ver entre las mascotas de todos los clientes
 
      public String showInformationOfTheClinicR (String selectionPetsAvaiable){
@@ -202,6 +253,23 @@ public class Veterinary{
             
     }    
 
+
+     //Metodo para saber que mascota se eligio para hospitalizar
+
+     public Pet showInformationWhatUserSelectedHospitalization (String petForHospitalization, int registerClientId){
+
+        Pet pet = null;
+
+        for (int i = 0; i < clients.size(); i++){
+
+              if (clients.get(i).getId() == registerClientId){
+
+                  pet = clients.get(i).showWhatUserSelectedForHospitalization(petForHospitalization);
+              }
+         }
+
+         return pet;
+     }
     
     //Metodo para mostrar la informacion de las habitaciones
 
@@ -228,6 +296,20 @@ public class Veterinary{
 
     }
 
+
+    //Ingresos por hospitalizacion de toda la veterinaria
+
+    public double incomeHospitalizations (){
+
+        int cost = 0;
+
+        for (int i = 0; i < clients.size(); i++){
+
+             cost += clients.get(i).costHospitalizationOfThePet();
+        }
+
+        return cost;
+    }
     
      //Get and set
 

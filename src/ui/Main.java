@@ -49,6 +49,7 @@ public class Main {
 
              myLittlePet.getMiniRoom()[0].setPetClient(petCoquito);
              myLittlePet.getMiniRoom()[0].setAvaiable(false);
+             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Coquito);
 
          
 	         Client clientJames = new Client ("James Gonzalez", 985, "Calle 34 65", 317890453);
@@ -69,6 +70,7 @@ public class Main {
 
 	         myLittlePet.getMiniRoom()[1].setPetClient(petRoberto);
 	         myLittlePet.getMiniRoom()[1].setAvaiable(false);
+             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Roberto);
 
 
 	     } 
@@ -95,19 +97,15 @@ public class Main {
 
              System.out.println ("5. Para registrar una nueva mascota");
 
-             System.out.println ("6. Para hospitalizar una mascota");
+             System.out.println ("6. Para hospitalizar una mascota ya registrada");
 
              System.out.println ("7. Para dar de alta a una mascota");
 
-	         System.out.println ("8. Para ver el historial clinico de la mascota");
+	         System.out.println ("8. Para ver los ingresos por concepto de hospitalizaciones");
 
-	         System.out.println ("9. Para calcular el costo de la hospitalizacion");
+	         System.out.println ("9. Para ver la informacion de contacto de una mascota");
 
-	         System.out.println ("10. Para ver la informacion de contacto");
-
-	         System.out.println ("11. Para conocer los ingresos por conceptos de hospitalizacion");
-
-	         System.out.println ("12. Salir");
+	         System.out.println ("10. Salir");
     
 	     }  
 
@@ -117,7 +115,7 @@ public class Main {
 		
 	     int userInput = 0;
 	  
-	     while(userInput != 12){
+	     while(userInput != 10){
 	
 		     showOptions();	
 	         userInput = reader.nextInt();
@@ -164,8 +162,8 @@ public class Main {
 				 
 				 else{
 
-             	     System.out.println ("Su id no existe en el sistema, desea registrarse?");
-             	     System.out.println ("1. Deseo registrarme" + "\n" + "2. No deseo registrarme" + "\n");
+             	     System.out.println ("El id no existe en el sistema, desea registrar el cliente?");
+             	     System.out.println ("1. Si" + "\n" + "2. No" + "\n");
              	     int registerSelection = reader.nextInt();
              	     reader.nextLine();
 
@@ -480,6 +478,96 @@ public class Main {
 
 
              break;
+
+
+             case 6:
+
+             System.out.println ("Ingrese el id del cliente cuya mascota desea registrar");
+             registerClientId = reader.nextInt();
+             reader.nextLine();
+
+                 if (myLittlePet.checkIfClientExist(registerClientId) == true){
+
+                     System.out.println ("El cliente tiene las siguientes mascotas registradas, seleccione la que desea hospitalizar");
+                     System.out.println (myLittlePet.showPetsOfClient(registerClientId));
+                     String petForHospitalization = reader.nextLine();
+
+
+             System.out.println ("Ingrese los sintomas que presenta la mascota");
+             String symptomsSelected = reader.nextLine();
+
+             System.out.println ("Ingrese el diagnostico de la mascota");
+             String diagnosisSelected = reader.nextLine();
+
+             System.out.println ("Ingrese el dia en el que ingreso la mascota");
+             int admisionDay = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el mes en el que ingreso la mascota");
+             int admisionMonth = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el año en el que ingreso la mascota");
+             int admisionYear = reader.nextInt();
+             reader.nextLine();
+
+             Pet petRegister = myLittlePet.showInformationWhatUserSelectedHospitalization(petForHospitalization, registerClientId);
+
+             ClinicRecord clinicPetRegister = new ClinicRecord();
+             petRegister.setClinicR(clinicPetRegister);
+
+             Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
+             ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+
+             clinicPetRegister.addHistory(historyPetRegister);
+
+
+             System.out.println ("La mascota tiene medicamentos recetados? \n 1. Si \n 2. No");
+             int medicineSelection = reader.nextInt();
+             reader.nextLine();
+
+             if (medicineSelection == 1){
+
+                 System.out.println ("Ingrese el nombre del medicamento");
+                 String nameMedicineSelected = reader.nextLine();
+
+                 System.out.println ("Ingrese la dosis del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                 double doseMedicineSelected = reader.nextDouble();
+                 reader.nextLine();
+
+                 System.out.println ("Ingrese el costo del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+                 double costDoseMedicineSelected = reader.nextDouble();
+                 reader.nextLine();
+                                    
+                 System.out.println ("Ingrese la frecuencia del medicamento (por ejemplo, dos veces al dia)");
+                 String medicineFrecuencySelected = reader.nextLine();
+
+                 Medication petRegisterMedication = new Medication (nameMedicineSelected, doseMedicineSelected, costDoseMedicineSelected, medicineFrecuencySelected);
+                 historyPetRegister.addMedicine(petRegisterMedication);
+
+
+            } //cierra el if de si tiene medicinas
+
+            else if (medicineSelection == 2){
+
+                 System.out.println ("No se agrego ningun medicamento a la historia clinica de la mascota");
+            }
+                                     
+
+             System.out.println (myLittlePet.hospitalizationRegisterPet(petForHospitalization, registerClientId));
+    }
+
+
+
+
+
+             case 8:
+
+             System.out.println ("Los ingresos de la veterinaria por concepto de hospitalizaciones es ");
+             System.out.println (myLittlePet.incomeHospitalizations());
+
+
+
 
               
 	        } //cierra el switch

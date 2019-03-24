@@ -12,6 +12,7 @@ public class Room{
      //Relaciones
 
      private Pet petClient;
+     private ClinicHistory clinicHistoryOfThePet;
 
 
      //Metodo constructor
@@ -21,8 +22,20 @@ public class Room{
          this.numberOfTheRoom = numberOfTheRoom;
          this.avaiable = avaiable;
          this.petClient = petClient;
+         this.clinicHistoryOfThePet = clinicHistoryOfThePet;
     }
 
+
+     //Metodo para calcular el costo de hospitalizacion de una habitacion
+
+      public double costHospitalizationRoom (){
+
+          double cost = 0;
+
+            cost = petClient.costHospitalization();
+
+           return cost;
+     }
  
      //Get and set
 
@@ -32,6 +45,14 @@ public class Room{
 
      public void setAvaiable (boolean avaiable){
          this.avaiable = avaiable;
+     }
+
+     public ClinicHistory getClinicHistoryOfThePet (){
+         return clinicHistoryOfThePet;
+     }
+
+     public void setClinicHistoryOfThePet (ClinicHistory clinicHistoryOfThePet){
+         this.clinicHistoryOfThePet = clinicHistoryOfThePet;
      }
 
      public Pet getPetClient(){
