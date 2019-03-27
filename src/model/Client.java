@@ -126,15 +126,148 @@ public class Client{
 
       public double costHospitalizationOfThePet (){
 
+          Pet pet = null;
           double cost = 0;
 
            for (int i = 0; i < pets.size(); i++){
 
-                cost = pets.get(i).costHospitalization();
-           }
+               pet = pets.get(i);
 
+                if (pet.getKind().equals("CAT")){
+
+                if (pet.getWeight() >= 1.0 && pet.getWeight() <= 3.0){
+
+                    cost += (pet.getClinicR().hospitalizationDays()) * 10;
+                }
+
+                else if (pet.getWeight() >= 3.1 && pet.getWeight() <= 10.0){
+
+                    cost += 12 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() >= 10.1 && pet.getWeight() <= 20.0){
+
+                    cost += 15 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() > 20.0){
+
+                    cost += 20 * pet.getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de cat
+
+           else if (pet.getKind().equals("DOG")){
+
+                if (pet.getWeight() >= 1.0 && pet.getWeight() <= 3.0){
+
+                    cost += 15 * pet.getClinicR().hospitalizationDays();
+                }
+
+                else if (pet.getWeight() >= 3.1 && pet.getWeight() <= 10.0){
+
+                    cost += 17 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() >= 10.1 && pet.getWeight() <= 20.0){
+
+                    cost += 20 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() > 20.0){
+
+                    cost += 25 * pet.getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de dog
+
+
+           else if (pet.getKind().equals("BIRD")){
+
+                if (pet.getWeight() >= 1.0 && pet.getWeight() <= 3.0){
+
+                    cost += 10* pet.getClinicR().hospitalizationDays();
+                }
+
+                else if (pet.getWeight() >= 3.1 && pet.getWeight() <= 10.0){
+
+                    cost += 12 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() >= 10.1 && pet.getWeight() <= 20.0){
+
+                    cost += 20 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() > 20.0){
+
+                    cost += 25 * pet.getClinicR().hospitalizationDays();
+                }
+
+           } //cierra el if de bird
+
+
+           else if (pet.getKind().equals("OTHER")){
+
+                if (pet.getWeight() >= 1.0 && pet.getWeight() <= 3.0){
+
+                    cost += 10 * pet.getClinicR().hospitalizationDays();
+                }
+
+                else if (pet.getWeight() >= 3.1 && pet.getWeight() <= 10.0){
+
+                    cost += 17 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() >= 10.1 && pet.getWeight() <= 20.0){
+
+                    cost += 30 * pet.getClinicR().hospitalizationDays();
+
+                }
+
+                else if (pet.getWeight() > 20.0){
+
+                    cost += 30 * pet.getClinicR().hospitalizationDays();
+                }
+           }
+     }
            return cost;
      }
+
+
+
+     //Metodo para ver el historial de historias clinicas de una mascota
+
+      public String howManyClinicHThePetHave(String petForHospitalization){
+
+           String msg = "";
+
+           for (int i = 0; i < pets.size(); i++){
+
+               if (pets.get(i).getName().equals(petForHospitalization)){
+
+                     if (pets.get(i).getClinicR().howManyClinicH() == 0){
+
+                          msg = "La mascota no tiene historias clinicas";
+                     }
+
+                      else {
+
+                           msg = ("La mascota tiene " + pets.get(i).getClinicR().howManyClinicH() + "historia(s) clinica(s)");
+                     }
+                }
+           }
+
+           return msg;
+     }
+     
 
 
      //Get and set

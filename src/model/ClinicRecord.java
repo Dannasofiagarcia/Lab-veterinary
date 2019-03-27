@@ -33,7 +33,12 @@ public class ClinicRecord{
 
      	 	 if (clinicH != null){
 
-     	 	 msg = ("\n" + "HISTORIA CLINICA" + "\n" + "La fecha de ingreso es " + clinicH.get(i).getAdmisionDate() + "\n" + "El status es " + clinicH.get(i).getStatus() + "\n" + "Los sintomas de la mascota son " + clinicH.get(i).getSymptom() + "\n" + "El diagnostico de la mascota es " + clinicH.get(i).getDiagnosis() + "\n" + "\n" + clinicH.get(i).showInformationAboutMedicine());
+     	 	 msg += ("\n" + "HISTORIA CLINICA" + "\n" + "La fecha de ingreso es " + clinicH.get(i).getAdmisionDate() + "\n" 
+     	 	 	+ "El status es " + clinicH.get(i).getStatus() + "\n" 
+     	 	 	+ "Los sintomas de la mascota son " + clinicH.get(i).getSymptom() + "\n" 
+     	 	 	+ "El diagnostico de la mascota es " + clinicH.get(i).getDiagnosis() + "\n" + "\n" 
+     	 	 	+ clinicH.get(i).showInformationAboutMedicine() + "\n" + "\n" 
+     	 	 	+ "La fecha de salida de la mascota es " + clinicH.get(i).showOffDate());
 
              }
 
@@ -54,11 +59,7 @@ public class ClinicRecord{
 
      	for (int i = 0; i < clinicH.size(); i++){
 
-     		 if (clinicH.get(i).getStatus().equals("CLOSED")){
-
      		 	 days = clinicH.get(i).admisionDateInOnlyDays();
-
-     		 }
      	}
 
      	return days;
@@ -81,8 +82,23 @@ public class ClinicRecord{
 
      	return historyC;
 
-
     }
+
+    //Metodo para ver todas las historias clinicas de una mascota
+
+    public int howManyClinicH (){
+
+    	 String msg = "";
+
+    	 int contador = 0;
+
+    	 for (int i = 0; i < clinicH.size(); i++){
+
+    	 	 contador++;
+    	}
+    	 return contador;
+    }
+
 
      //Metodo para agregar las historias clinicas
 

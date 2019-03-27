@@ -13,13 +13,13 @@ public class Veterinary{
      //Atributos
 
      private String name;
+     private double incomeHospitalizations;
 
 
      //Relaciones
 
      private ArrayList <Client> clients;
      private Room [] miniRoom;
-     private ArrayList <ClinicRecord> clinicRecordAllVeterinary;
      
 
      //Metodo constructor
@@ -36,7 +36,6 @@ public class Veterinary{
          miniRoom [5] = new Room ("seis", true);
          miniRoom [6] = new Room ("siete", true);
          miniRoom [7] = new Room ("ocho", true);
-         clinicRecordAllVeterinary = new ArrayList <ClinicRecord>();
          clients = new ArrayList <Client>();
      }
 
@@ -297,18 +296,186 @@ public class Veterinary{
     }
 
 
-    //Ingresos por hospitalizacion de toda la veterinaria
+     //Metodo para mostrar la informacion de las habitaciones
 
-    public double incomeHospitalizations (){
 
-        int cost = 0;
+     public String showInformationPetsHospitalization (){
 
-        for (int i = 0; i < clients.size(); i++){
+         String msg = "";
 
-             cost += clients.get(i).costHospitalizationOfThePet();
+        for (int i = 0; i < miniRoom.length; i++){
+
+            if (miniRoom[i].getAvaiable() == false){
+
+                 msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " se encuentra " + miniRoom[i].getPetClient().getName() + "\n" + "\n");
+             }
         }
 
-        return cost;
+         return msg;
+
+    }
+
+    
+
+     //Metodo para ver cuantas historias clinicas tiene una mascota
+
+     public String showHowManyClinicH (int registerClientId, String petForHospitalization){
+
+        boolean findClient = false;
+        String msj = "";
+        Pet pet = null;
+
+        for (int i = 0; i < clients.size() && !findClient; i++){
+
+             if (clients.get(i) != null){
+
+                 if (clients.get(i).getId() == (registerClientId)){
+ 
+                  findClient = true; 
+                  msj = clients.get(i).howManyClinicHThePetHave(petForHospitalization);
+                 }
+             }
+         }   
+         return msj;
+     }
+     
+
+     //Metodo para asignarle la fecha de salida a una mascota
+
+     public void setOffDatePet (String petForDischarge, Time actualDate){
+
+        boolean found = false;
+
+         for (int i = 0; i < miniRoom.length && !found; i++){
+
+             if (miniRoom[i].getPetClient().getName().equals(petForDischarge)){
+
+                 found = true;
+                 miniRoom[i].getClinicHistoryOfThePet().setOffDate(actualDate);
+
+             }
+         }
+     }
+
+     
+     //Metodo para dar de alta a una mascota
+
+     public String dischargeAPet(String petForDischarge, Time actualDate){
+
+        Pet pet = null;
+        double costMedication = 0;
+        double costHospitalization = 0;
+        double totalCost = 0;
+        boolean found = false;
+        String msg = "";
+
+        for (int i = 0; i < miniRoom.length && !found; i++){
+
+             if (miniRoom[i].getPetClient().getName().equals(petForDischarge)){
+
+                 found = true;
+                 miniRoom[i].setAvaiable(true);
+                 costHospitalization = miniRoom[i].getPetClient().costHospitalization();
+                 costMedication = miniRoom[i].getClinicHistoryOfThePet().medicationCost();
+                 totalCost = costMedication + costHospitalization;
+                 incomeHospitalizations += costHospitalization;
+
+
+                 msg = ("La historia clinica de la mascota mientras estuvo hospitalizada es la siguiente " + miniRoom[i].getClinicHistoryOfThePet().showInformationHistory() + "\n" + "\n" 
+                    + "Los costos de la hospitalizacion por " + miniRoom[i].getClinicHistoryOfThePet().admisionDateInOnlyDays() + " dias es de " + costHospitalization +"\n" 
+                    + "El costo de los medicamentos recetados es " + costMedication + "\n" + "\n" 
+                    + "El costo total a pagar es " + totalCost + "\n");
+
+             }
+
+             miniRoom[i].setPetClient(null);
+        }
+
+        return msg;
+     }
+
+
+      //Metodo para saber que mascota se para dar de alta
+
+     public Pet showWhatUserSelectedForDischarge (String petForDischarge){
+
+        Pet pet = null;
+        boolean found = false;
+
+        for (int i = 0; i < miniRoom.length && !found; i++){
+
+             if (miniRoom[i].getPetClient().getName().equals(petForDischarge)){
+
+                 found = true;
+                  pet = miniRoom[i].getPetClient();
+              }
+         }
+
+         return pet;
+     }
+ 
+
+     //Metodo para buscar el contacto
+
+     public String contactInformationByPetName (String petNameContact){
+
+         String msg = "";
+         boolean found = false;
+         Pet pet = null;
+
+         for (int i = 0; i < clients.size() && !found; i++){
+
+             if (clients.get(i).showInformationPets().equals(petNameContact)){
+
+                 found = true;
+                 msg = "El numero de telefono de " + clients.get(i).getName() + " dueño de " + clients.get(i).showInformationPets() + " es " + clients.get(i).getPhoneNumber() 
+                       + " y su direccion es " + clients.get(i).getDirection(); 
+             }
+         }
+
+         return msg;
+     }
+
+
+     //Metodo para buscar el contacto
+
+     public String contactInformationByClientName (String clientNameContact){
+
+         String msg = "";
+         boolean found = false;
+         Pet pet = null;
+
+         for (int i = 0; i < clients.size() && !found; i++){
+
+             if (clients.get(i).getName().equals(clientNameContact)){
+
+                 found = true;
+                 msg = ("El numero de telefono de " + clients.get(i).getName() + " dueño de " + clients.get(i).showInformationPets() + " es " + clients.get(i).getPhoneNumber() 
+                       + " y su direccion es " + clients.get(i).getDirection()); 
+             }
+         }
+
+         return msg;
+     }
+
+
+     //Metodo para mostrar la informacion de las habitaciones
+
+
+     public String showInformationPetsHospitalizationNow (){
+
+         String msg = "";
+
+        for (int i = 0; i < miniRoom.length; i++){
+
+            if (miniRoom[i].getAvaiable() == false){
+
+                 msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " se encuentra " + miniRoom[i].getPetClient().getName() + " y tiene la siguiente historia clinica " + "\n" + miniRoom[i].getClinicHistoryOfThePet().showInformationHistory() + "\n" + "\n");
+             }
+        }
+
+         return msg;
+
     }
     
      //Get and set
@@ -320,6 +487,14 @@ public class Veterinary{
     public void setName (String name) {
 	     this.name = name;
 	}
+
+     public double getIncomeHospitalizations() {
+         return incomeHospitalizations;
+    }
+
+    public void setIncomeHospitalizations (double incomeHospitalizations) {
+         this.incomeHospitalizations = incomeHospitalizations;
+    }
 
     public ArrayList getClients(){
           return clients;

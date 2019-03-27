@@ -42,114 +42,115 @@ public class Pet{
 
           double cost = 0;
 
-           if (kind == "CAT"){
+           if (kind.equals("CAT")){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
-                    cost = 10.0 * getClinicR().hospitalizationDays();
+                    cost += getClinicR().hospitalizationDays() *10;
                 }
 
                 else if (weight >= 3.1 && weight <= 10.0){
 
-                    cost = 12.0 * getClinicR().hospitalizationDays();
+                    cost += 12.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight >= 10.1 && weight <= 20.0){
 
-                    cost = 15.0 * getClinicR().hospitalizationDays();
+                    cost += 15.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight > 20.0){
 
-                    cost = 20.0 * getClinicR().hospitalizationDays();
+                    cost += 20.0 * getClinicR().hospitalizationDays();
                 }
 
            } //cierra el if de cat
 
-           else if (kind == "DOG"){
+           else if (kind.equals("DOG")){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
-                    cost = 15.0 * getClinicR().hospitalizationDays();
+                    cost += 15.0 * getClinicR().hospitalizationDays();
                 }
 
                 else if (weight >= 3.1 && weight <= 10.0){
 
-                    cost = 17.0 * getClinicR().hospitalizationDays();
+                    cost += 17.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight >= 10.1 && weight <= 20.0){
 
-                    cost = 20.0 * getClinicR().hospitalizationDays();
+                    cost += 20.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight > 20.0){
 
-                    cost = 25.0 * getClinicR().hospitalizationDays();
+                    cost += 25.0 * getClinicR().hospitalizationDays();
                 }
 
            } //cierra el if de dog
 
 
-           else if (kind == "BIRD"){
+           else if (kind.equals("BIRD")){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
-                    cost = 10.0 * getClinicR().hospitalizationDays();
+                    cost += 10.0 * getClinicR().hospitalizationDays();
                 }
 
                 else if (weight >= 3.1 && weight <= 10.0){
 
-                    cost = 12.0 * getClinicR().hospitalizationDays();
+                    cost += 12.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight >= 10.1 && weight <= 20.0){
 
-                    cost = 20.0 * getClinicR().hospitalizationDays();
+                    cost += 20.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight > 20.0){
 
-                    cost = 25.0 * getClinicR().hospitalizationDays();
+                    cost += 25.0 * getClinicR().hospitalizationDays();
                 }
 
            } //cierra el if de bird
 
 
-           else if (kind == "OTHER"){
+           else if (kind.equals("OTHER")){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
-                    cost = 10.0 * getClinicR().hospitalizationDays();
+                    cost += 10.0 * getClinicR().hospitalizationDays();
                 }
 
                 else if (weight >= 3.1 && weight <= 10.0){
 
-                    cost = 17.0 * getClinicR().hospitalizationDays();
+                    cost += 17.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight >= 10.1 && weight <= 20.0){
 
-                    cost = 30.0 * getClinicR().hospitalizationDays();
+                    cost += 30.0 * getClinicR().hospitalizationDays();
 
                 }
 
                 else if (weight > 20.0){
 
-                    cost = 30.0 * getClinicR().hospitalizationDays();
+                    cost += 30.0 * getClinicR().hospitalizationDays();
                 }
 
            } //cierra el if de other
 
            return cost;
      }
+
 
 
      //Get and set

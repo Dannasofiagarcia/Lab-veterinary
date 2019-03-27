@@ -21,6 +21,7 @@ public class Medication{
      	this.administrationFrecuency = administrationFrecuency;
      }
  
+
      //Get and set
 
     public String getName() {

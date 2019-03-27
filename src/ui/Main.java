@@ -34,7 +34,7 @@ public class Main {
 	         Client clientCarolina = new Client ("Carolina Diaz", 783, "Calle 87 44", 315623869);
 	         myLittlePet.addClient(clientCarolina);
 
-	         Pet petCoquito = new Pet ("Coquito", 3.0, "PET", new Time (2018, 10, 18));
+	         Pet petCoquito = new Pet ("Coquito", 3.0, "DOG", new Time (2018, 10, 18));
 	         clientCarolina.addPet(petCoquito);
 	         petCoquito.setOwner(clientCarolina);
 
@@ -55,7 +55,7 @@ public class Main {
 	         Client clientJames = new Client ("James Gonzalez", 985, "Calle 34 65", 317890453);
 	         myLittlePet.addClient(clientJames);
 
-	         Pet petRoberto = new Pet ("Roberto", 0.8, "BIRD", new Time (2018, 10, 18));
+	         Pet petRoberto = new Pet ("Roberto", 1.0, "BIRD", new Time (2018, 10, 18));
 	         clientJames.addPet(petRoberto);
 	         petRoberto.setOwner(clientJames);
 
@@ -65,12 +65,12 @@ public class Main {
 	         ClinicHistory clinicHistory1Roberto = new ClinicHistory ("OPEN", "sin apetito", "parasitos", new Time (2019, 01, 2), null);
 	         clinicRecordRoberto.addHistory(clinicHistory1Roberto);
 
-	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 36.5, "dos veces al dia");
+	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 3.5, "dos veces al dia");
 	         clinicHistory1Roberto.addMedicine(robertoMedication1);
 
 	         myLittlePet.getMiniRoom()[1].setPetClient(petRoberto);
 	         myLittlePet.getMiniRoom()[1].setAvaiable(false);
-             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Roberto);
+             myLittlePet.getMiniRoom()[1].setClinicHistoryOfThePet(clinicHistory1Roberto);
 
 
 	     } 
@@ -89,7 +89,7 @@ public class Main {
 
 	         System.out.println ("1. Para ver los clientes registrados en la veterinaria y sus mascotas");
 
-	         System.out.println ("2. Para ver el historial de una mascota");
+	         System.out.println ("2. Para ver el historial de historias clinicas de una mascota");
 
 	         System.out.println ("3. Para ver disponibilidad en las habitaciones");
 
@@ -105,7 +105,9 @@ public class Main {
 
 	         System.out.println ("9. Para ver la informacion de contacto de una mascota");
 
-	         System.out.println ("10. Salir");
+             System.out.println ("10. Para ver el reporte de las historias clinicas de las mascotas hospitalizadas actualmente");
+
+	         System.out.println ("11. Salir");
     
 	     }  
 
@@ -115,7 +117,7 @@ public class Main {
 		
 	     int userInput = 0;
 	  
-	     while(userInput != 10){
+	     while(userInput != 11){
 	
 		     showOptions();	
 	         userInput = reader.nextInt();
@@ -354,6 +356,8 @@ public class Main {
                  	System.out.println ("Ingrese el nombre de la mascota");
                     String registerPetName = reader.nextLine();
 
+
+
                     System.out.println ("Ingrese el tipo de mascota \n 1. Perro \n 2. Gato \n 3. Pajaro \n 4. Otro");
                     int selectionKind = reader.nextInt();
                     reader.nextLine();
@@ -482,7 +486,7 @@ public class Main {
 
              case 6:
 
-             System.out.println ("Ingrese el id del cliente cuya mascota desea registrar");
+             System.out.println ("Ingrese el id del cliente");
              registerClientId = reader.nextInt();
              reader.nextLine();
 
@@ -491,6 +495,8 @@ public class Main {
                      System.out.println ("El cliente tiene las siguientes mascotas registradas, seleccione la que desea hospitalizar");
                      System.out.println (myLittlePet.showPetsOfClient(registerClientId));
                      String petForHospitalization = reader.nextLine();
+
+                     System.out.println (myLittlePet.showHowManyClinicH(registerClientId, petForHospitalization));
 
 
              System.out.println ("Ingrese los sintomas que presenta la mascota");
@@ -557,14 +563,82 @@ public class Main {
              System.out.println (myLittlePet.hospitalizationRegisterPet(petForHospitalization, registerClientId));
     }
 
+             break;
 
 
+            case 7:
+
+             System.out.println ("Las siguientes son las mascotas hospitalizadas actualmente");
+             System.out.println (myLittlePet.showInformationPetsHospitalization());
+             System.out.println ("Escriba el nombre de la mascota a la que desea dar de alta");
+             String petForDischarge = reader.nextLine();
+
+             System.out.println ("Ingrese el dia actual");
+             int actualDay = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el mes actual");
+             int actualMonth = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el año actual");
+             int actualYear = reader.nextInt();
+             reader.nextLine();
+
+             Time actualDate = new Time (actualYear, actualMonth, actualDay);
+
+             myLittlePet.setOffDatePet(petForDischarge, actualDate);
+
+             //Pet petDischarge = myLittlePet.showWhatUserSelectedForDischarge(petForDischarge);
+             //petDischarge.getClinicR().getClinicH().getOffDate().setOffDate(actualDate);
+
+             System.out.println (myLittlePet.dischargeAPet(petForDischarge, actualDate));
+
+
+            break;
 
 
              case 8:
 
              System.out.println ("Los ingresos de la veterinaria por concepto de hospitalizaciones es ");
-             System.out.println (myLittlePet.incomeHospitalizations());
+             System.out.println (myLittlePet.getIncomeHospitalizations());
+  
+             break;
+
+             case 9:
+
+              System.out.println ("Seleccione como desea buscar los datos de contacto de una mascota");
+              System.out.println ("1. Nombre de la mascota \n 2. Nombre del dueño de la mascota");   
+              int selection = reader.nextInt();
+              reader.nextLine();   
+
+
+            if (selection == 1){
+
+                 System.out.println ("Ingrese el nombre de la mascota");
+                 String petNameContact = reader.nextLine();
+                 System.out.println (myLittlePet.contactInformationByPetName(petNameContact));
+            }
+
+            else if (selection == 2){
+
+                 System.out.println ("Ingrese el nombre del dueño de la mascota");
+                 String clientNameContact = reader.nextLine();
+                 System.out.println (myLittlePet.contactInformationByClientName(clientNameContact));
+            }
+
+            break;
+
+
+            case 10:
+
+
+            System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+
+            break;
+
+
+
 
 
 
