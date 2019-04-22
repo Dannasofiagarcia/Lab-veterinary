@@ -477,10 +477,85 @@ public class Veterinary{
          return msg;
 
     }
+
+    //Metodo para cambiar el numero de telefono y direccion del cliente
+
+    public String changeClientData(int newNumber, String newDirection, String nameClient){
+
+        String msg = "";
+
+        for (int i = 0; i < clients.size(); i++){
+
+            if (clients.get(i).getName().equals(nameClient)){
+
+                 clients.get(i).setDirection(newDirection);
+                 clients.get(i).setPhoneNumber(newNumber);
+                 msg = "Se ha cambiado con exito el numero de telefono y la direccion del cliente";  
+
+            }
+
+            else {
+
+                msg = "No se ha podido cambiar el numero de telefono del cliente";
+            }
+        }
+        
+         return msg;
+    }
     
+
+    //Metodo para agregar medicamento a una mascota hospitalizada
+
+     public String addMedicinePetHospitalization(String namePetMedicine, Medication petNewMedication){
+
+         String msg = "";
+         Pet petMedicine = null;
+
+         for (int i = 0; i < miniRoom.length; i++){
+
+             if (miniRoom[i].getPetClient().getName().equals(namePetMedicine)){
+
+                 miniRoom[i].getClinicHistoryOfThePet().addMedicine(petNewMedication);
+                 msg = "Se agrego exitosamente el medicamento a la historia clinica de la mascota";
+             }
+
+             else {
+                 msg = "La mascota no se encuentra hospitalizada, no se le pudieron agregar los medicamentos";
+             }
+         }
+
+         return msg;
+     } 
+
+
+     //Metodo para añadir notas en la historia clinica de la mascota
+
+     public String addNotesToClinicH(String nameNotes, String notesClinicHistory){
+
+        String msg = "";
+        Pet petNotes = null;
+
+        for (int i = 0; i < miniRoom.length; i++){
+
+             if (miniRoom[i].getPetClient().getName().equals(nameNotes)){
+
+                miniRoom[i].getClinicHistoryOfThePet().addNotes(notesClinicHistory);
+                msg = "Se añadieron correctamente las notas a la historia clinica de la mascota";
+             }
+
+             else {
+
+                msg = "No se pudieron agregar las notas a la historia clinica de la mascota";
+             }
+        }
+
+        return msg;
+     }
+     
+
      //Get and set
 
-     public String getName() {
+     public String getName(){
 		 return name;
 	}
 

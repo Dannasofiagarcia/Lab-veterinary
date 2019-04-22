@@ -34,14 +34,14 @@ public class Main {
 	         Client clientCarolina = new Client ("Carolina Diaz", 783, "Calle 87 44", 315623869);
 	         myLittlePet.addClient(clientCarolina);
 
-	         Pet petCoquito = new Pet ("Coquito", 3.0, "DOG", new Time (2018, 10, 18));
+	         Pet petCoquito = new Pet ("Coquito", 3.0, 0.15, Pet.DOG, new Time (2018, 10, 18));
 	         clientCarolina.addPet(petCoquito);
 	         petCoquito.setOwner(clientCarolina);
 
 	         ClinicRecord clinicRecordCoquito = new ClinicRecord();
 	         petCoquito.setClinicR(clinicRecordCoquito);
 
-	         ClinicHistory clinicHistory1Coquito = new ClinicHistory("OPEN", "cuerpo extraño en el ojo", "ceguera", new Time (2019, 03, 13), null);
+	         ClinicHistory clinicHistory1Coquito = new ClinicHistory("OPEN", "cuerpo extraño en el ojo", "ceguera", new Time (2019, 03, 13), null, null);
              clinicRecordCoquito.addHistory(clinicHistory1Coquito);
 
              Medication coquitoMedication1 = new Medication("Ocucan", 15.0, 23.8, "Una vez al dia");
@@ -55,14 +55,14 @@ public class Main {
 	         Client clientJames = new Client ("James Gonzalez", 985, "Calle 34 65", 317890453);
 	         myLittlePet.addClient(clientJames);
 
-	         Pet petRoberto = new Pet ("Roberto", 1.0, "BIRD", new Time (2018, 10, 18));
+	         Pet petRoberto = new Pet ("Roberto", 1.0, 0.05, "BIRD", new Time (2018, 10, 18));
 	         clientJames.addPet(petRoberto);
 	         petRoberto.setOwner(clientJames);
 
 	         ClinicRecord clinicRecordRoberto = new ClinicRecord();
 	         petRoberto.setClinicR(clinicRecordRoberto);
 
-	         ClinicHistory clinicHistory1Roberto = new ClinicHistory ("OPEN", "sin apetito", "parasitos", new Time (2019, 01, 2), null);
+	         ClinicHistory clinicHistory1Roberto = new ClinicHistory ("OPEN", "sin apetito", "parasitos", new Time (2019, 01, 2), null, null);
 	         clinicRecordRoberto.addHistory(clinicHistory1Roberto);
 
 	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 3.5, "dos veces al dia");
@@ -107,7 +107,11 @@ public class Main {
 
              System.out.println ("10. Para ver el reporte de las historias clinicas de las mascotas hospitalizadas actualmente");
 
-	         System.out.println ("11. Salir");
+             System.out.println ("11. Para cambiar el numero de telefono del cliente y su direccion");
+
+             System.out.println ("12. Para añadir medicamentos a la historia clinica de una mascota hospitalizada");
+
+	         System.out.println ("15. Salir");
     
 	     }  
 
@@ -117,7 +121,7 @@ public class Main {
 		
 	     int userInput = 0;
 	  
-	     while(userInput != 11){
+	     while(userInput != 15){
 	
 		     showOptions();	
 	         userInput = reader.nextInt();
@@ -204,24 +208,28 @@ public class Main {
                          double registerPetWeight = reader.nextDouble();
                          reader.nextLine();
 
+                         System.out.println ("Ingrese la altura de la mascota (recuerde que debe ir con coma, por ejemplo 3,0)");
+                         double registerPetHeight = reader.nextDouble();
+                         reader.nextLine();
+
                                      
                          String kind = "";
 
                          if (selectionKind ==1){
-                             kind = "DOG";
+                             kind = Pet.DOG;
                          }
 
                          else if (selectionKind ==2){
-                     	     kind = "CAT";
+                     	     kind = Pet.CAT;
 
                          }
 
                          else if (selectionKind ==3){
-                             kind = "BIRD";
+                             kind = Pet.BIRD;
                          }
 
                          else {
-                             kind = "OTHER";
+                             kind = Pet.OTHER;
                          }
                                      
                          System.out.println ("Ingrese el dia de nacimiento de la mascota");
@@ -237,7 +245,7 @@ public class Main {
                          reader.nextLine();
                
                          Time birthDate = new Time (birthYear, birthMonth, birthDay);
-                         Pet petRegister = new Pet (registerPetName, registerPetWeight, kind, birthDate);
+                         Pet petRegister = new Pet (registerPetName, registerPetWeight, registerPetHeight, kind, birthDate);
                          registerClient.addPet(petRegister);
                          petRegister.setOwner(registerClient);
 
@@ -271,7 +279,7 @@ public class Main {
                          petRegister.setClinicR(clinicPetRegister);
 
                          Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
-                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null, null);
 
                          clinicPetRegister.addHistory(historyPetRegister);
 
@@ -364,25 +372,31 @@ public class Main {
 
                     System.out.println ("Ingrese el peso de la mascota (recuerde que debe ir con coma, por ejemplo 3,0)");
                     double registerPetWeight = reader.nextDouble();
+                    reader.nextLine();
+
+                    System.out.println ("Ingrese la altura de la mascota (recuerde que debe ir con coma, por ejemplo 3,0)");
+                    double registerPetHeight = reader.nextDouble();
+                    reader.nextLine();
 
                                      
                     String kind = "";
 
                     if (selectionKind ==1){
-                        kind = "DOG";
-                    }
+                             kind = Pet.DOG;
+                         }
 
-                    else if (selectionKind ==2){
-                        kind = "CAT";
-                    }
+                         else if (selectionKind ==2){
+                             kind = Pet.CAT;
 
-                    else if (selectionKind ==3){
-                     	kind = "BIRD";
-                    }
+                         }
 
-                    else {
-                        kind = "OTHER";
-                     }
+                         else if (selectionKind ==3){
+                             kind = Pet.BIRD;
+                         }
+
+                         else {
+                             kind = Pet.OTHER;
+                         }
                                      
                     System.out.println ("Ingrese el dia de nacimiento de la mascota");
                     int birthDay = reader.nextInt();
@@ -397,7 +411,7 @@ public class Main {
                     reader.nextLine();
                
                     Time birthDate = new Time (birthYear, birthMonth, birthDay);
-                    Pet petRegister = new Pet (registerPetName, registerPetWeight, kind, birthDate);
+                    Pet petRegister = new Pet (registerPetName, registerPetWeight, registerPetHeight, kind, birthDate);
           
                     myLittlePet.findTheOwnerOfThePet(registerClientId).addPet(petRegister);
                     petRegister.setOwner(myLittlePet.findTheOwnerOfThePet(registerClientId));
@@ -432,7 +446,7 @@ public class Main {
                          petRegister.setClinicR(clinicPetRegister);
 
                          Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
-                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+                         ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null, null);
 
                          clinicPetRegister.addHistory(historyPetRegister);
 
@@ -523,7 +537,7 @@ public class Main {
              petRegister.setClinicR(clinicPetRegister);
 
              Time admisionDate = new Time (admisionYear, admisionMonth, admisionDay);
-             ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null);
+             ClinicHistory historyPetRegister = new ClinicHistory("OPEN", symptomsSelected, diagnosisSelected, admisionDate, null, null);
 
              clinicPetRegister.addHistory(historyPetRegister);
 
@@ -589,9 +603,6 @@ public class Main {
 
              myLittlePet.setOffDatePet(petForDischarge, actualDate);
 
-             //Pet petDischarge = myLittlePet.showWhatUserSelectedForDischarge(petForDischarge);
-             //petDischarge.getClinicR().getClinicH().getOffDate().setOffDate(actualDate);
-
              System.out.println (myLittlePet.dischargeAPet(petForDischarge, actualDate));
 
 
@@ -627,23 +638,74 @@ public class Main {
                  System.out.println (myLittlePet.contactInformationByClientName(clientNameContact));
             }
 
-            break;
+             break;
 
 
-            case 10:
+             case 10:
 
 
-            System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+             System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
 
-            break;
-
-
+             break;
 
 
+             case 11:
+
+             System.out.println ("Ingrese el nombre del cliente al que desea cambiarle la informacion de contacto");
+             String nameClient = reader.nextLine();
+             System.out.println ("Ingrese el nuevo numero de telefono del cliente");
+             int newNumber = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese la nueva direccion del cliente");
+             String newDirection = reader.nextLine();
+
+             System.out.println (myLittlePet.changeClientData(newNumber, newDirection, nameClient));
+
+             break;
 
 
+             case 12:
 
-              
+             System.out.println ("Seleccione la mascota a la que desea agregarle el medicamento, las siguientes son las mascotas actualmente hospitalizadas \n");
+             System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+             String namePetMedicine = reader.nextLine();
+
+             System.out.println ("Ingrese el nombre del medicamento");
+             String nameMedicineSelected = reader.nextLine();
+
+             System.out.println ("Ingrese la dosis del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+             double doseMedicineSelected = reader.nextDouble();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el costo del medicamento (recuerde que debe ir con coma, por ejemplo 3,0)");
+             double costDoseMedicineSelected = reader.nextDouble();
+             reader.nextLine();
+                                    
+             System.out.println ("Ingrese la frecuencia del medicamento (por ejemplo, dos veces al dia)");
+             String medicineFrecuencySelected = reader.nextLine();
+
+             Medication petNewMedication = new Medication (nameMedicineSelected, doseMedicineSelected, costDoseMedicineSelected, medicineFrecuencySelected);
+
+             System.out.println (myLittlePet.addMedicinePetHospitalization(namePetMedicine, petNewMedication));
+
+             break;
+
+
+             case 13:
+
+             System.out.println ("Seleccione la mascota a la que desea agregarle las notas en la historia clinica, las siguientes son las mascotas actualmente hospitalizadas \n");
+             System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+             String nameNotes = reader.nextLine();
+
+             System.out.println ("Ingrese las notas del posible diagnostico de la mascota");
+             String notesClinicHistory = reader.nextLine();
+
+             System.out.println (myLittlePet.addNotesToClinicH(nameNotes, notesClinicHistory));
+
+             break;
+
+
 	        } //cierra el switch
 
         } //cierra el while

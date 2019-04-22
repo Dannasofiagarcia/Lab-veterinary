@@ -7,15 +7,16 @@ public class Pet{
 
 	  //Constantes
 
-     public final static String DOG = "Dog";
-     public final static String CAT = "Cat";
-     public final static String BIRD = "Bird";
-     public final static String OTHER = "Other";
+     public final static String DOG = "perro";
+     public final static String CAT = "gato";
+     public final static String BIRD = "ave";
+     public final static String OTHER = "otro";
 
      //Atributos
 
      private String name;
      private double weight;
+     private double height;
      private String kind;
 
 
@@ -28,10 +29,11 @@ public class Pet{
 
      //Metodo constructor
 
-     public Pet (String name, double weight, String kind, Time bornTime){
+     public Pet (String name, double weight, double height, String kind, Time bornTime){
 
      	this.name = name;
      	this.weight = weight;
+      this.height = height;
      	this.kind = kind;
      }
 
@@ -151,6 +153,24 @@ public class Pet{
            return cost;
      }
 
+     //Metodo para calcular la masa corporal de la mascota
+
+     public double calculateBMI(){
+ 
+     double indexBM = 0;
+     String msg = "";
+
+     indexBM = weight/height*height;
+
+       if (height == 0){
+
+         msg = "No se puede realizar la operacion, la division entre 0 no existe";
+
+       }
+  
+     return indexBM;
+     }
+
 
 
      //Get and set
@@ -178,6 +198,14 @@ public class Pet{
 
      public void setWeight(double weight){
           this.weight = weight;
+     }
+
+     public double getHeight(){
+          return height;
+     }
+
+     public void setHeight(double height){
+          this.height = height;
      }
 
 

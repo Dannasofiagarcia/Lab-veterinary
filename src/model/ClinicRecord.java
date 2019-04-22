@@ -106,6 +106,13 @@ public class ClinicRecord{
      	clinicH.add(nuevo);
      }
 
+     //Metodo para añadir las notas a la historia clinica
+
+     //public void addNotesCH (String notesClinicHistory){
+
+        // clinicH.addNotes(notesClinicHistory);
+     //}
+
      //Get and set 
 
      public ArrayList getClinicH(){

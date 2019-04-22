@@ -17,6 +17,7 @@ public class ClinicHistory{
 	 private String status;
 	 private String symptom;
 	 private String diagnosis;
+     private String notes;
 	 ArrayList <Medication> prescriptionMedications;
 
      //Relaciones
@@ -27,13 +28,14 @@ public class ClinicHistory{
 
      //Metodo constructor
 
-     public ClinicHistory (String status, String symptom, String diagnosis, Time admisionDate, Time offDate){
+     public ClinicHistory (String status, String symptom, String diagnosis, Time admisionDate, Time offDate, String notes){
 
          this.status = status;
          this. symptom = symptom;
          this.diagnosis = diagnosis;
          this.admisionDate = admisionDate;
          this.offDate = offDate;
+         this.notes = notes;
          prescriptionMedications = new ArrayList <Medication>();
      }
 
@@ -151,6 +153,12 @@ public class ClinicHistory{
         return cost;
      }
 
+     //Metodo para añadir notas
+
+     public void addNotes (String nuevo){
+         notes = nuevo;
+     }
+
 
 
      //Get and set
@@ -193,6 +201,14 @@ public class ClinicHistory{
 
      public void setOffDate(Time offDate){
           this.offDate = offDate;
+     }
+
+     public String getNotes(){
+          return notes;
+     }
+
+     public void setNotes(String notes){
+          this.notes = notes;
      }
 
      public ArrayList getPrescriptionMedication(){
