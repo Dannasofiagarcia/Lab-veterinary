@@ -7,8 +7,8 @@ public class ClinicHistory{
 
 	 //Constantes
  
-     public final static String OPEN = "Open";
-     public final static String CLOSED = "Closed";
+     public final static String OPEN = "abierto";
+     public final static String CLOSED = "cerrado";
 
      //Atributos
 
@@ -107,12 +107,12 @@ public class ClinicHistory{
 
         if (offDate == null){
 
-            msg = "La mascota no tiene fecha de salida, aun no se ha dado de alta";
+            msg = "sin fecha de salida, la mascota aun no se le ha dado de alta";
         }
 
         else if (offDate != null){
 
-            msg = ("El dia en el que la mascota salio fue " + getOffDate().getDay() + "\n" + " del mes " + getOffDate().getMonth() + " en el año " + getOffDate().getYear());
+            msg = ("el dia en el que la mascota salio fue " + getOffDate().getDay() + "\n" + " del mes " + getOffDate().getMonth() + " en el año " + getOffDate().getYear());
         }
 
         return msg;

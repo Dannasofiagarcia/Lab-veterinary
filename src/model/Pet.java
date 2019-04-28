@@ -44,7 +44,7 @@ public class Pet{
 
           double cost = 0;
 
-           if (kind.equals("CAT")){
+           if (kind.equals(CAT)){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
@@ -70,7 +70,7 @@ public class Pet{
 
            } //cierra el if de cat
 
-           else if (kind.equals("DOG")){
+           else if (kind.equals(DOG)){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
@@ -97,7 +97,7 @@ public class Pet{
            } //cierra el if de dog
 
 
-           else if (kind.equals("BIRD")){
+           else if (kind.equals(BIRD)){
 
                 if (weight >= 1.0 && weight <= 3.0){
 
@@ -124,7 +124,7 @@ public class Pet{
            } //cierra el if de bird
 
 
-           else if (kind.equals("OTHER")){
+           else if (kind.equals(OTHER)){
 
                 if (weight >= 1.0 && weight <= 3.0){
 

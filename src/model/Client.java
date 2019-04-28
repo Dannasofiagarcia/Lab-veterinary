@@ -62,8 +62,9 @@ public class Client{
            String msg = "";
            for (int i = 0; i < pets.size(); i++){
 
-                msg += (pets.get(i).getName());
+                msg += (" " + pets.get(i).getName());
           }
+
 
           return msg;
       }
@@ -76,7 +77,7 @@ public class Client{
 
           for (int i = 0; i < pets.size(); i++){
 
-          msg += (pets.get(i).getName());
+          msg += (pets.get(i).getName() + "\n");
           }
 
            return msg;
@@ -102,7 +103,28 @@ public class Client{
       }
 
 
-      //Metodo para devolver la mascota que el cliente selecciono
+      //Metodo para ver que mascota selecciono el usuario dentro de las distintas mascotas que tenga un usuario
+
+      public Pet dogInformationUserSelected (String petNameContact){
+
+          Pet petSelected = null;
+          boolean found = false;
+          String msg = "";
+     
+           for (int i= 0; i <pets.size() && !found; i++){
+               if(petNameContact.equals(pets.get(i).getName())){
+
+                     found = true;
+                     petSelected = pets.get(i);
+                     
+               }
+          }
+          
+           return petSelected;
+      }
+
+
+
 
        //Metodo para ver que mascota selecciono el usuario
 

@@ -14,12 +14,14 @@ public class Veterinary{
 
      private String name;
      private double incomeHospitalizations;
+     private double incomeServices;
 
 
      //Relaciones
 
      private ArrayList <Client> clients;
      private Room [] miniRoom;
+     private ArrayList <Service> services;
      
 
      //Metodo constructor
@@ -37,10 +39,20 @@ public class Veterinary{
          miniRoom [6] = new Room ("siete", true);
          miniRoom [7] = new Room ("ocho", true);
          clients = new ArrayList <Client>();
+         services = new ArrayList <Service>();
      }
 
+    /**
+    * This method check if the client exists <br>
 
-     //Metodo para verificar si el cliente esta registrado
+    * <b>pre:</b> clients is initialized, clients != null <br>
+
+    * <b>post:</b> It has been verified if the client is registered in the veterinary <br>
+
+    * @param registerClientId Is the number identification of the client, registerClientId != null <br>
+
+    * @return boolean True if the client exists and false if the client doesn't exist <br>
+    */
 
      public boolean checkIfClientExist (int registerClientId){
 
@@ -49,50 +61,61 @@ public class Veterinary{
 
         for (int i = 0; i < clients.size() && !findClient; i++){
 
-             if (clients.get(i) != null){
-
-                 if (clients.get(i).getId() == (registerClientId)){
+                if (clients.get(i).getId() == (registerClientId)){
  
-                  findClient = true;
-                 }
+                    findClient = true;
+                }    
              }
-         }   
+           
          return findClient;
      }
-     
-     //Metodo para agregar los clientes a la veterinaria
+    
+
+    /**
+    * This method add a new client <br>
+
+    * <b>pre:</b> clients is initialized, clients != null <br>
+
+    * <b>post:</b> A new client is added to clients list of the veterinary <br>
+
+    * @param nuevo is the new client to add to the veterinary<br>
+    */
 
      public void addClient (Client nuevo){
          if (nuevo != null){
-         clients.add(nuevo);
+            clients.add(nuevo);
          }
      }  
+
+
+    /**
+    * This method add a new service <br>
+
+    * <b>pre:</b> services is initialized, services != null <br>
+
+    * <b>post:</b> A new service is added to the services list of the veterinary <br>
+
+    * @param nuevo is the new service to add to the veterinary <br>
+    */
     
-
-     //Metodo para hospitalizar una mascota
-
-     public String hospitalization (int registerClientId, String registerPetName){
-
-         String msg = "";
-         Pet p = null;
-
-         for (int i = 0; i < clients.size() && p == null; i++){
-
-             if (clients.get(i).getId() == (registerClientId)){
-                     p = clients.get(i).findPet(registerPetName);
-
-                 if (p == null){
-                     msg = "El cliente no tiene una mascota con ese nombre";
-                 }
-             }
+     public void addService (Service nuevo){
+         if (nuevo != null){
+            services.add(nuevo);
          }
-         if (p!=null){
-             msg = addPetToAvaiableRoom(p);
-         }
-         return msg;
-    }
+     }
 
-     //Metodo para hospitalizar una mascota ya registrada
+
+      /**
+    * This method hospitalize a pet that is already register <br>
+
+    * <b>pre:</b> clients is initialized, clients != null <br>
+
+    * <b>post:</b> A pet is hospitalized <br>
+
+    * @param nuevo is the new service to add to the veterinary <br>
+
+    * @return String If the pet was hospitalized the method show a message with the information of the room, if the pet wasn't hospitalized the method show a message with the reason <br>
+    */
 
      public String hospitalizationRegisterPet (String petForHospitalization, int registerClientId){
 
@@ -201,7 +224,7 @@ public class Veterinary{
          int indice = 1;
          for (int i = 0; i < clients.size(); i++){
 
-         msg += (clients.get(i).showPetsAvaiable() + "\n");
+         msg += (clients.get(i).showPetsAvaiable());
          }
 
          return msg;
@@ -281,7 +304,10 @@ public class Veterinary{
 
             if (miniRoom[i].getAvaiable() == false){
 
-                 msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " esta ocupada y se encuentra la mascota " + miniRoom[i].getPetClient().getName() + "\n" + "\n");
+                if(miniRoom[i].getPetClient() != null){
+
+                    msg += ("La habitacion numero " + miniRoom[i].getNumberOfTheRoom() + " esta ocupada y se encuentra la mascota " + miniRoom[i].getPetClient().getName() + "\n" + "\n");
+                }
              }
 
              else {
@@ -386,9 +412,10 @@ public class Veterinary{
                     + "El costo de los medicamentos recetados es " + costMedication + "\n" + "\n" 
                     + "El costo total a pagar es " + totalCost + "\n");
 
+                 miniRoom[i].setPetClient(null);
+
              }
 
-             miniRoom[i].setPetClient(null);
         }
 
         return msg;
@@ -425,10 +452,10 @@ public class Veterinary{
 
          for (int i = 0; i < clients.size() && !found; i++){
 
-             if (clients.get(i).showInformationPets().equals(petNameContact)){
+             if (clients.get(i).dogInformationUserSelected(petNameContact).getName().equals(petNameContact)){
 
                  found = true;
-                 msg = "El numero de telefono de " + clients.get(i).getName() + " dueño de " + clients.get(i).showInformationPets() + " es " + clients.get(i).getPhoneNumber() 
+                 msg += "El numero de telefono de " + clients.get(i).getName() + " dueño de " + clients.get(i).showInformationPets() + " es " + clients.get(i).getPhoneNumber() 
                        + " y su direccion es " + clients.get(i).getDirection(); 
              }
          }
@@ -480,13 +507,13 @@ public class Veterinary{
 
     //Metodo para cambiar el numero de telefono y direccion del cliente
 
-    public String changeClientData(int newNumber, String newDirection, String nameClient){
+    public String changeClientData(int newNumber, String newDirection, String nameClient, int idClient){
 
         String msg = "";
 
         for (int i = 0; i < clients.size(); i++){
 
-            if (clients.get(i).getName().equals(nameClient)){
+            if (clients.get(i).getId() == idClient){
 
                  clients.get(i).setDirection(newDirection);
                  clients.get(i).setPhoneNumber(newNumber);
@@ -496,7 +523,7 @@ public class Veterinary{
 
             else {
 
-                msg = "No se ha podido cambiar el numero de telefono del cliente";
+                msg = "No se ha podido cambiar el numero de telefono ni la direccion del cliente";
             }
         }
         
@@ -509,7 +536,6 @@ public class Veterinary{
      public String addMedicinePetHospitalization(String namePetMedicine, Medication petNewMedication){
 
          String msg = "";
-         Pet petMedicine = null;
 
          for (int i = 0; i < miniRoom.length; i++){
 
@@ -551,6 +577,22 @@ public class Veterinary{
 
         return msg;
      }
+
+     //Metodo para ver el numero de identidad de los clientes actualmente registrados
+
+     public String showIdCLients(){
+
+        String msg = "";
+
+        for (int i = 0; i < clients.size(); i++){
+
+            msg += (clients.get(i).getName() + " y su numero de identidad es " + clients.get(i).getId());
+        }
+
+        return msg;
+     }
+
+     //
      
 
      //Get and set
@@ -577,6 +619,14 @@ public class Veterinary{
 
      public void setClients(ArrayList<Client> clients){
           this.clients = clients;
+     }
+
+     public ArrayList getServices(){
+        return services;
+     }
+
+     public void setServices(ArrayList<Service> services){
+        this.services = services;
      }
 
 	public Room[] getMiniRoom() {

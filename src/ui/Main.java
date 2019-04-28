@@ -9,7 +9,6 @@ public class Main {
     //Relaciones
 	
 	private Veterinary myLittlePet;
-	
 	private Scanner reader;
 
 
@@ -29,49 +28,141 @@ public class Main {
 	
 	     public void init() { 
 
+            //Creando la veterinaria
 	         myLittlePet = new Veterinary ("My Little Pet");
 
+            //Creando la cliente Carolina
 	         Client clientCarolina = new Client ("Carolina Diaz", 783, "Calle 87 44", 315623869);
 	         myLittlePet.addClient(clientCarolina);
 
-	         Pet petCoquito = new Pet ("Coquito", 3.0, 0.15, Pet.DOG, new Time (2018, 10, 18));
-	         clientCarolina.addPet(petCoquito);
-	         petCoquito.setOwner(clientCarolina);
+             //Creando la mascota Lola
+	         Pet petLola = new Pet ("Lola", 4.0, 0.30, Pet.DOG, new Time (2013, 5, 14));
+	         clientCarolina.addPet(petLola);
+	         petLola.setOwner(clientCarolina);
 
-	         ClinicRecord clinicRecordCoquito = new ClinicRecord();
-	         petCoquito.setClinicR(clinicRecordCoquito);
+            //Creando el historial clinico de Lola
+	         ClinicRecord clinicRecordLola = new ClinicRecord();
+	         petLola.setClinicR(clinicRecordLola);
 
-	         ClinicHistory clinicHistory1Coquito = new ClinicHistory("OPEN", "cuerpo extraño en el ojo", "ceguera", new Time (2019, 03, 13), null, null);
+            //Creando la historia clinica de Lola
+	         ClinicHistory clinicHistory1Lola = new ClinicHistory(ClinicHistory.OPEN, "cuerpo extraño en el ojo", "ceguera", new Time (2019, 03, 13), null, null);
+             clinicRecordLola.addHistory(clinicHistory1Lola);
+
+            //Creando el medicamento de la historia clinica de Lola
+             Medication lolaMedication1 = new Medication("Ocucan", 15.0, 23.8, "Una vez al dia");
+             clinicHistory1Lola.addMedicine(lolaMedication1);
+
+            //Asignando la mascota Lola a una habitacion
+             myLittlePet.getMiniRoom()[0].setPetClient(petLola);
+             myLittlePet.getMiniRoom()[0].setAvaiable(false);
+             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Lola);
+
+
+            //Creando la mascota Coquito
+             Pet petCoquito = new Pet ("Coquito", 3.0, 0.15, Pet.DOG, new Time (2018, 10, 18));
+             clientCarolina.addPet(petCoquito);
+             petCoquito.setOwner(clientCarolina);
+
+            //Creando el historial clinico de Coquito
+             ClinicRecord clinicRecordCoquito = new ClinicRecord();
+             petCoquito.setClinicR(clinicRecordCoquito);
+
+            //Creando la historia clinica de Coquito
+             ClinicHistory clinicHistory1Coquito = new ClinicHistory(ClinicHistory.OPEN, "problemas de alimentacion y debilidad", "sin diagnosticar", new Time (2019, 04, 22), null, null);
              clinicRecordCoquito.addHistory(clinicHistory1Coquito);
 
-             Medication coquitoMedication1 = new Medication("Ocucan", 15.0, 23.8, "Una vez al dia");
+            //Creando los medicamentos de la historia clinica de coquito
+             Medication coquitoMedication1 = new Medication("Vitaminas Lamberts", 500.0, 0.8, "Una despues de cada comida");
              clinicHistory1Coquito.addMedicine(coquitoMedication1);
 
-             myLittlePet.getMiniRoom()[0].setPetClient(petCoquito);
-             myLittlePet.getMiniRoom()[0].setAvaiable(false);
-             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Coquito);
+             Medication coquitoMedication2 = new Medication("Suero", 500.0, 0.1, "Un suero por día durante 3 dias");
+             clinicHistory1Coquito.addMedicine(coquitoMedication2);
 
-         
+            //Asignando la mascota Coquito a una habitacion
+             myLittlePet.getMiniRoom()[1].setPetClient(petCoquito);
+             myLittlePet.getMiniRoom()[1].setAvaiable(false);
+             myLittlePet.getMiniRoom()[1].setClinicHistoryOfThePet(clinicHistory1Coquito);
+
+            
+            //Creando el cliente James
 	         Client clientJames = new Client ("James Gonzalez", 985, "Calle 34 65", 317890453);
 	         myLittlePet.addClient(clientJames);
 
-	         Pet petRoberto = new Pet ("Roberto", 1.0, 0.05, "BIRD", new Time (2018, 10, 18));
+            //Creando la mascota Roberto
+	         Pet petRoberto = new Pet ("Roberto", 1.0, 0.05, Pet.BIRD, new Time (2018, 10, 18));
 	         clientJames.addPet(petRoberto);
 	         petRoberto.setOwner(clientJames);
 
+            //Creando el historial clinico de la mascota Roberto
 	         ClinicRecord clinicRecordRoberto = new ClinicRecord();
 	         petRoberto.setClinicR(clinicRecordRoberto);
 
-	         ClinicHistory clinicHistory1Roberto = new ClinicHistory ("OPEN", "sin apetito", "parasitos", new Time (2019, 01, 2), null, null);
+            //Creando la historia clinica de Roberto
+	         ClinicHistory clinicHistory1Roberto = new ClinicHistory (ClinicHistory.OPEN, "sin apetito", "parasitos", new Time (2019, 01, 2), null, null);
 	         clinicRecordRoberto.addHistory(clinicHistory1Roberto);
 
+            //Creando el medicamento de Coquito
 	         Medication robertoMedication1 = new Medication ("Cardotek 30", 145.0, 3.5, "dos veces al dia");
 	         clinicHistory1Roberto.addMedicine(robertoMedication1);
 
-	         myLittlePet.getMiniRoom()[1].setPetClient(petRoberto);
-	         myLittlePet.getMiniRoom()[1].setAvaiable(false);
-             myLittlePet.getMiniRoom()[1].setClinicHistoryOfThePet(clinicHistory1Roberto);
+            //Asignando la mascota Roberto a una habitacion
+	         myLittlePet.getMiniRoom()[2].setPetClient(petRoberto);
+	         myLittlePet.getMiniRoom()[2].setAvaiable(false);
+             myLittlePet.getMiniRoom()[2].setClinicHistoryOfThePet(clinicHistory1Roberto);
 
+
+            //Creando la mascota Milo
+             Pet petMilo = new Pet ("Milo", 5.0, 0.32, Pet.CAT, new Time (2017, 10, 17));
+             clientJames.addPet(petMilo);
+             petMilo.setOwner(clientJames);
+
+            //Creando el historial clinico de Milo
+             ClinicRecord clinicRecordMilo = new ClinicRecord();
+             petMilo.setClinicR(clinicRecordMilo);
+
+            //Creando la historia clinica de Milo
+             ClinicHistory clinicHistory1Milo = new ClinicHistory (ClinicHistory.OPEN, "fiebre, vomito, depresion, anorexia", "moquillo felino", new Time (2019, 03, 30), null, null);
+             clinicRecordMilo.addHistory(clinicHistory1Milo);
+
+            //Creando los medicamentos de Milo
+             Medication miloMedication1 = new Medication ("Omevio", 275.0, 0.5, "tres veces al dia");
+             clinicHistory1Milo.addMedicine(miloMedication1);
+
+             Medication miloMedication2 = new Medication ("Suero", 500.0, 0.1, "un suero por día durante 3 dias");
+             clinicHistory1Milo.addMedicine(miloMedication2);
+
+             Medication miloMedication3 = new Medication ("Vacuna recombitek", 45.0, 1.0, "unica dosis");
+             clinicHistory1Milo.addMedicine(miloMedication3);
+
+            //Asignando a Milo a una habitacion
+             myLittlePet.getMiniRoom()[3].setPetClient(petMilo);
+             myLittlePet.getMiniRoom()[3].setAvaiable(false);
+             myLittlePet.getMiniRoom()[3].setClinicHistoryOfThePet(clinicHistory1Milo);
+
+
+             
+             //Creando la mascota Nemo
+             Pet petNemo = new Pet ("Nemo", 0.05, 0.09, Pet.OTHER, new Time (2019, 04, 12));
+             clientJames.addPet(petNemo);
+             petNemo.setOwner(clientJames);
+
+            //Creando el historial clinico de Nemo
+             ClinicRecord clinicRecordNemo = new ClinicRecord();
+             petNemo.setClinicR(clinicRecordNemo);
+
+            //Creando la historia clinica de Nemo
+             ClinicHistory clinicHistory1Nemo = new ClinicHistory (ClinicHistory.OPEN, "el pez se rasca contra las paredes del tanque constantemente", "flukes", new Time (2019, 03, 30), null, null);
+             clinicRecordNemo.addHistory(clinicHistory1Nemo);
+
+            //Creando los medicamentos de Nemo
+             Medication nemoMedication1 = new Medication ("Antibioticos", 0.9, 1.0, "tres veces al dia");
+             clinicHistory1Nemo.addMedicine(nemoMedication1);
+
+
+            //Asignando a Nemo a una habitacion
+             myLittlePet.getMiniRoom()[4].setPetClient(petNemo);
+             myLittlePet.getMiniRoom()[4].setAvaiable(false);
+             myLittlePet.getMiniRoom()[4].setClinicHistoryOfThePet(clinicHistory1Nemo);
 
 	     } 
      
@@ -109,9 +200,23 @@ public class Main {
 
              System.out.println ("11. Para cambiar el numero de telefono del cliente y su direccion");
 
-             System.out.println ("12. Para añadir medicamentos a la historia clinica de una mascota hospitalizada");
+             System.out.println ("12. Para agregar medicamentos a la historia clinica de una mascota hospitalizada");
 
-	         System.out.println ("15. Salir");
+             System.out.println ("13. Para prestar alguno de los servicios a una mascota");
+
+             System.out.println ("14. Para calcular los ingresos por servicios");
+
+             System.out.println ("15. Para calcular los ingresos totales de la veterinaria");
+
+             System.out.println ("16. Para calcular el promedio de ingresos de los servicios prestados por la veterinaria");
+
+             System.out.println ("17. Para mostrar el promedio de ingresos de la veterinaria en una semana");
+
+             System.out.println ("18. Para generar un reporte por los servicios prestados en determinada fecha");
+
+             System.out.println ("19. Para agregar notas del posible diagnostico a la historia clinica de una mascota hospitalizada");
+
+	         System.out.println ("20. Salir");
     
 	     }  
 
@@ -121,7 +226,7 @@ public class Main {
 		
 	     int userInput = 0;
 	  
-	     while(userInput != 15){
+	     while(userInput != 20){
 	
 		     showOptions();	
 	         userInput = reader.nextInt();
@@ -316,7 +421,7 @@ public class Main {
                                  }
                                      
 
-                             System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
+                             System.out.println (myLittlePet.addPetToAvaiableRoom(petRegister));
 
                          } //cierra el if si se quiere hospitalizar la mascota
 
@@ -417,7 +522,7 @@ public class Main {
                     petRegister.setOwner(myLittlePet.findTheOwnerOfThePet(registerClientId));
 
 
-                    System.out.println ("Desea hospitalizar la mascota? \n 1. Sí, hospitalizar \n 2. No, no hospitalizar");
+                    System.out.println ("Desea hospitalizar la mascota? \n 1. Si, hospitalizar \n 2. No, no hospitalizar");
                     int hospitalizationSelection = reader.nextInt();
                     reader.nextLine();
 
@@ -483,7 +588,7 @@ public class Main {
                                  }
                                      
 
-                             System.out.println (myLittlePet.hospitalization(registerClientId, registerPetName));
+                             System.out.println (myLittlePet.addPetToAvaiableRoom(petRegister));
 
                          } //cierra el if si se quiere hospitalizar la mascota
 
@@ -653,6 +758,11 @@ public class Main {
 
              System.out.println ("Ingrese el nombre del cliente al que desea cambiarle la informacion de contacto");
              String nameClient = reader.nextLine();
+
+             System.out.println ("Ingrese id del cliente");
+             int idClient = reader.nextInt();
+             reader.nextLine();
+
              System.out.println ("Ingrese el nuevo numero de telefono del cliente");
              int newNumber = reader.nextInt();
              reader.nextLine();
@@ -660,7 +770,7 @@ public class Main {
              System.out.println ("Ingrese la nueva direccion del cliente");
              String newDirection = reader.nextLine();
 
-             System.out.println (myLittlePet.changeClientData(newNumber, newDirection, nameClient));
+             System.out.println (myLittlePet.changeClientData(newNumber, newDirection, nameClient, idClient));
 
              break;
 
@@ -668,7 +778,7 @@ public class Main {
              case 12:
 
              System.out.println ("Seleccione la mascota a la que desea agregarle el medicamento, las siguientes son las mascotas actualmente hospitalizadas \n");
-             System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+             System.out.println (myLittlePet.showRoomsInformation());
              String namePetMedicine = reader.nextLine();
 
              System.out.println ("Ingrese el nombre del medicamento");
@@ -706,6 +816,67 @@ public class Main {
              break;
 
 
+             case 14:
+             
+             System.out.println ("Ingrese el numero de identificacion del cliente");
+             int idSelection = reader.nextInt();
+             reader.nextLine(); 
+
+             System.out.println ("Ingrese el nombre de la mascota a la que se le prestara el servicio");
+             String petServiceName = reader.nextLine();
+
+             System.out.println ("Seleccione el tipo de servicio que se le prestara a la mascota \n 1. Baño de mascotas en la veterinaria \n 2. Baño de mascotas a domicilio \n 3. Corte de uñas \n 4. Profilaxis \n 5. Aplicacion de vacunas");
+             int selectionService = reader.nextInt();
+             reader.nextLine();
+
+
+             String serviceSelected = "";
+
+             if (selectionService == 1){
+                serviceSelected = Service.BATH_PETS_VETERINARY;
+             }
+
+             else if (selectionService == 2){
+                serviceSelected = Service.BATH_PETS_HOME;
+             }
+
+             else if (selectionService == 3){
+                serviceSelected = Service.COURT_NAILS;
+             }
+
+             else if (selectionService == 4){
+                serviceSelected = Service.PROPHYLAXIS;
+             }
+
+             else if (selectionService == 5){
+                serviceSelected = Service.APPLICATION_VACCINES;
+             }
+
+             Service newService = new Service (serviceSelected, petServiceName, idSelection);
+             myLittlePet.addService(newService);
+
+
+             System.out.println ("El costo del servicio es " + newService.serviceCost(serviceSelected));
+
+             break;
+
+             case 19:
+
+             System.out.println ("Seleccione la mascota a la que desea agregarle las notas en la historia clinica, las siguientes son las mascotas actualmente hospitalizadas \n");
+             System.out.println (myLittlePet.showInformationPetsHospitalizationNow());
+             String nameNotes = reader.nextLine();
+
+             System.out.println ("Ingrese las notas del posible diagnostico de la mascota");
+             String notesClinicHistory = reader.nextLine();
+
+             System.out.println (myLittlePet.addNotesToClinicH(nameNotes, notesClinicHistory));
+
+             break;
+
+
+
+
+
 	        } //cierra el switch
 
         } //cierra el while
@@ -713,5 +884,8 @@ public class Main {
     } //cierra el showMenu
 
 } //cierra el main 
+
+
+
 
 
