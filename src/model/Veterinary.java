@@ -681,6 +681,139 @@ public class Veterinary{
         return msg;
      }
 
+     //Metodo para saber si el usuario ingreso mas de una semana
+
+     public boolean daysUserSelect(Time averageTimeFrom, Time averageTimeUntil){
+
+        int daysFrom = 0;
+        int daysFromYear = 0;
+        int daysUntil = 0;
+        int daysUntilYear = 0;
+
+        boolean correct = false;
+
+        daysFrom = ((averageTimeFrom.getMonth()-1)*30 + averageTimeFrom.getDay());
+        daysFromYear = ((averageTimeFrom.getYear()-2001)*360);
+        daysFrom = daysFrom + daysFromYear;
+
+        daysUntil = ((averageTimeUntil.getMonth()-1)*30 + averageTimeUntil.getDay());
+        daysUntilYear = ((averageTimeUntil.getYear()-2001)*360);
+        daysUntil = daysFrom + daysFromYear;
+
+        if (daysUntil - daysFrom == 7){
+
+            correct = true;
+        }
+
+        return correct;
+
+     }
+
+     //Metodo para convertir la fecha seleccionada por el usuario a solo dias
+     
+     public int dateSelectToDays (Time x){
+        int daysFrom = 0;
+        int daysFromYear = 0;
+        int daysUntil = 0;
+        int daysUntilYear = 0;
+
+        boolean correct = false;
+
+        daysFrom = ((x.getMonth()-1)*30 + x.getDay());
+        daysFromYear = ((x.getYear()-2001)*360);
+        daysFrom = daysFrom + daysFromYear;
+
+        return daysFrom;
+    }
+
+
+
+     //Metodo para calcular el promedio de ganancias en una semana
+
+     public String averageServicesAndHospitalization(Time averageTimeFrom, Time averageTimeUntil){
+
+        String msg = "";
+
+        double incomeH = 0;
+
+        int counterBathPetsV = 0;
+        int counterBathPetsH = 0;
+        int counterCourtNails = 0;
+        int counterProphilaxys = 0;
+        int counterAplicationV = 0;
+
+        double incomeBathPetsH = 0;
+        double incomeBathPetsV = 0;
+        double incomeCourtNails = 0;
+        double incomeProphilaxys = 0;
+        double incomeAplicationV = 0;
+
+        double averageBathPetsH = 0;
+        double averageBathPetsV = 0;
+        double averageCourtNails = 0;
+        double averageProphilaxys = 0;
+        double averageAplicationV = 0;
+
+        for (int i = 0; i < services.size(); i++){
+
+            if (services.get(i).serviceDate() >= dateSelectToDays(averageTimeFrom) && services.get(i).serviceDate() <= dateSelectToDays(averageTimeUntil)){
+
+                 if (services.get(i).getType().equals(Service.BATH_PETS_VETERINARY)){
+
+                    counterBathPetsH++;
+                    incomeBathPetsH += services.get(i).getCost();
+                    averageBathPetsH = incomeBathPetsH/counterBathPetsH;
+                }
+
+                if (services.get(i).getType().equals(Service.BATH_PETS_HOME)){
+
+                    counterBathPetsV++;
+                    incomeBathPetsV += services.get(i).getCost();
+                    averageBathPetsV = incomeBathPetsV/counterBathPetsV;
+                }
+
+                if (services.get(i).getType().equals(Service.COURT_NAILS)){
+
+                    counterCourtNails++;
+                    incomeCourtNails += services.get(i).getCost();
+                    averageCourtNails = incomeCourtNails/counterCourtNails;
+                }
+
+                if (services.get(i).getType().equals(Service.PROPHYLAXIS)){
+
+                    counterProphilaxys++;
+                    incomeProphilaxys += services.get(i).getCost();
+                    averageProphilaxys = incomeProphilaxys/counterProphilaxys;
+                }
+
+                if (services.get(i).getType().equals(Service.APPLICATION_VACCINES)){
+
+                    counterAplicationV++;
+                    incomeAplicationV += services.get(i).getCost();
+                    averageAplicationV = incomeAplicationV/counterAplicationV;
+                }
+                 
+            }
+        }
+
+        for (int j = 0; j < clients.size(); j++){
+
+           incomeH += clients.get(j).searchCLinicHClosed();
+        }
+
+        
+
+         msg += ("El promedio del servicio de baño de mascotas en la veterinaria es " + averageBathPetsV + "\n" + "\n");
+         msg += ("El promedio del servicio de baño de mascotas en casa es " + averageBathPetsH + "\n" + "\n");
+         msg += ("El promedio del servicio de corte de uñas es " + averageCourtNails + "\n" + "\n");
+         msg += ("El promedio del servicio de profilaxis es " + averageProphilaxys + "\n" + "\n");
+         msg += ("El promedio del servicio de aplicacion de vacunas " + averageAplicationV + "\n" + "\n");
+         msg += ("El promedio de las hospitalizaciones es " + incomeH + "\n" + "\n");
+
+        return msg;
+     }
+
+
      //Get and set
 
      public String getName(){

@@ -60,6 +60,21 @@ public class Service {
      	return cost;
      }
 
+
+     //Metodo para pasar la fecha a dias
+
+     public int serviceDate (){
+
+     	int days = 0;
+     	int year = 0;
+
+     	days = ((dateService.getMonth()-1)*30 + dateService.getDay());
+     	year = ((dateService.getYear()-2001)*360);
+     	days = days + year;
+
+     	return days;
+     }
+     
 	 //Get y set
 
 	 public String getType(){

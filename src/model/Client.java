@@ -289,6 +289,23 @@ public class Client{
 
            return msg;
      }
+
+     //Metodo para buscar una mascota con una historia clinica cerrada
+
+     public double searchCLinicHClosed(){
+
+      double cost = 0;
+      ClinicHistory clinic = null;
+
+      for (int i = 0; i < pets.size(); i++){
+          if (pets.get(i).getClinicR().incomePublicOpenClinicH() != null){
+           cost += pets.get(i).costHospitalization();
+          }
+      }
+
+      return cost;
+     }
+
      
 
 

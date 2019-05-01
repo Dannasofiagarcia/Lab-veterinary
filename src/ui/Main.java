@@ -906,6 +906,57 @@ public class Main {
 
              break;
 
+             case 17:
+
+             System.out.println ("Ingrese la fecha desde la que desea ver el promedio de ingresos de la veterinaria");
+
+             System.out.println ("Dia");
+             int dayAverage = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Mes");
+             int monthAverage = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Año");
+             int yearAverage = reader.nextInt();
+             reader.nextLine();
+
+             Time averageTimeFrom = new Time (yearAverage, monthAverage, dayAverage);
+
+             System.out.println ("Ingrese la fecha hasta la que desea ver el promedio de ingresos de la veterinaria");
+
+             System.out.println ("Dia");
+             int dayAverage1 = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Mes");
+             int monthAverage1 = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Año");
+             int yearAverage1 = reader.nextInt();
+             reader.nextLine();
+
+             Time averageTimeUntil = new Time (yearAverage1, monthAverage1, dayAverage1);
+
+             if (myLittlePet.daysUserSelect(averageTimeFrom, averageTimeUntil) == true){
+
+                System.out.println (myLittlePet.averageServicesAndHospitalization(averageTimeFrom, averageTimeUntil));
+
+             }
+
+             else if (myLittlePet.daysUserSelect(averageTimeFrom, averageTimeUntil) == false){
+
+                System.out.println ("La fecha que ingreso es mas de una semana");
+
+             }
+
+             break;
+
+
+
+
              case 19:
 
              System.out.println ("Seleccione la mascota a la que desea agregarle las notas en la historia clinica, las siguientes son las mascotas actualmente hospitalizadas \n");

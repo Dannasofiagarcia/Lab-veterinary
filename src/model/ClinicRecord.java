@@ -106,12 +106,26 @@ public class ClinicRecord{
      	clinicH.add(nuevo);
      }
 
-     //Metodo para añadir las notas a la historia clinica
+     //Metodo para seleccionar las historias clinicas abiertas
 
-     //public void addNotesCH (String notesClinicHistory){
+     public ClinicHistory incomePublicOpenClinicH(){
 
-        // clinicH.addNotes(notesClinicHistory);
-     //}
+        int income = 0;
+        ClinicHistory clinicHC = null;
+        boolean found = false;
+
+        for (int i = 0; i < clinicH.size() && !found; i++){
+
+            if (clinicH.get(i).getStatus().equals(ClinicHistory.CLOSED)){
+
+                clinicHC = clinicH.get(i);
+                found = true;
+                
+            }
+        }
+
+        return clinicHC;
+     }
 
      //Get and set 
 
