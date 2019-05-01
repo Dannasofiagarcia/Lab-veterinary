@@ -29,31 +29,31 @@ public class Service {
 	 	 this.type = type;
 	 	 this.namePet = namePet;
 	 	 this.idOwner = idOwner;
-	 	 //cost = serviceCost(String serviceSelected);
+	 	 cost = serviceCost();
 	 }
 
      //Metodo para calcular el costo de los servicios
 
-     public double serviceCost(String serviceSelected){
+     public double serviceCost(){
 
-     	if (serviceSelected.equals(BATH_PETS_VETERINARY)){
+     	if (type.equals(BATH_PETS_VETERINARY)){
      		cost += 20.0;
      	}
 
-     	else if (serviceSelected.equals(BATH_PETS_HOME)){
+     	else if (type.equals(BATH_PETS_HOME)){
  			cost += 30.0;
 
      	}
 
-     	else if (serviceSelected.equals(COURT_NAILS)){
+     	else if (type.equals(COURT_NAILS)){
      		cost += 8.0;
      	}
 
-     	else if (serviceSelected.equals(PROPHYLAXIS)){
+     	else if (type.equals(PROPHYLAXIS)){
      		cost += 12.0;
      	}
 
-     	else if (serviceSelected.equals(APPLICATION_VACCINES)){
+     	else if (type.equals(APPLICATION_VACCINES)){
      		cost += 45.0;
      	}
 

@@ -99,9 +99,7 @@ public class Veterinary{
     */
     
      public void addService (Service nuevo){
-         if (nuevo != null){
             services.add(nuevo);
-         }
      }
 
 
@@ -563,17 +561,15 @@ public class Veterinary{
 
         for (int i = 0; i < miniRoom.length; i++){
 
+            if(miniRoom[i].getPetClient() != null){
+
              if (miniRoom[i].getPetClient().getName().equals(nameNotes)){
 
                 miniRoom[i].getClinicHistoryOfThePet().addNotes(notesClinicHistory);
                 msg = "Se añadieron correctamente las notas a la historia clinica de la mascota";
              }
-
-             else {
-
-                msg = "No se pudieron agregar las notas a la historia clinica de la mascota";
-             }
-        }
+         }
+     }
 
         return msg;
      }
@@ -592,8 +588,98 @@ public class Veterinary{
         return msg;
      }
 
-     //
-     
+     //Metodo para mostrar los ingresos por concepto de servicios
+
+     public double serviceIncome(){
+
+        for (int i = 0; i < services.size(); i++)
+
+         incomeServices += services.get(i).getCost();
+
+         return incomeServices;
+     }
+
+     //Metodo para calcular los ingresos totales de la veterinaria
+
+     public double totalIncomeVeterinary(){
+
+        double totalIncome = 0;
+
+        totalIncome = incomeServices + incomeHospitalizations;
+
+        return totalIncome;
+     }
+
+     //Metodo para calcular el promedio de los servicios
+
+     public String averageServices(){
+
+        int counterBathPetsV = 0;
+        int counterBathPetsH = 0;
+        int counterCourtNails = 0;
+        int counterProphilaxys = 0;
+        int counterAplicationV = 0;
+
+        double incomeBathPetsH = 0;
+        double incomeBathPetsV = 0;
+        double incomeCourtNails = 0;
+        double incomeProphilaxys = 0;
+        double incomeAplicationV = 0;
+
+        double averageBathPetsH = 0;
+        double averageBathPetsV = 0;
+        double averageCourtNails = 0;
+        double averageProphilaxys = 0;
+        double averageAplicationV = 0;
+
+        String msg = "";
+
+        for (int i = 0; i < services.size(); i++){
+
+            if (services.get(i).getType().equals(Service.BATH_PETS_VETERINARY)){
+
+                 counterBathPetsH++;
+                 incomeBathPetsH += services.get(i).getCost();
+                 averageBathPetsH = incomeBathPetsH/counterBathPetsH;
+            }
+
+            if (services.get(i).getType().equals(Service.BATH_PETS_HOME)){
+
+                counterBathPetsV++;
+                incomeBathPetsV += services.get(i).getCost();
+                averageBathPetsV = incomeBathPetsV/counterBathPetsV;
+            }
+
+            if (services.get(i).getType().equals(Service.COURT_NAILS)){
+
+                counterCourtNails++;
+                incomeCourtNails += services.get(i).getCost();
+                averageCourtNails = incomeCourtNails/counterCourtNails;
+            }
+
+            if (services.get(i).getType().equals(Service.PROPHYLAXIS)){
+
+                counterProphilaxys++;
+                incomeProphilaxys += services.get(i).getCost();
+                averageProphilaxys = incomeProphilaxys/counterProphilaxys;
+            }
+
+            if (services.get(i).getType().equals(Service.APPLICATION_VACCINES)){
+
+                counterAplicationV++;
+                incomeAplicationV += services.get(i).getCost();
+                averageAplicationV = incomeAplicationV/counterAplicationV;
+            }
+        }
+
+         msg += ("El promedio del servicio de baño de mascotas en la veterinaria es " + averageBathPetsV + "\n" + "\n");
+         msg += ("El promedio del servicio de baño de mascotas en casa es " + averageBathPetsH + "\n" + "\n");
+         msg += ("El promedio del servicio de corte de uñas es " + averageCourtNails + "\n" + "\n");
+         msg += ("El promedio del servicio de profilaxis es " + averageProphilaxys + "\n" + "\n");
+         msg += ("El promedio del servicio de aplicacion de vacunas " + averageAplicationV + "\n" + "\n");
+
+        return msg;
+     }
 
      //Get and set
 
