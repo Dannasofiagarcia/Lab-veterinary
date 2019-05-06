@@ -53,9 +53,9 @@ public class Main {
              clinicHistory1Lola.addMedicine(lolaMedication1);
 
             //Asignando la mascota Lola a una habitacion
-             myLittlePet.getMiniRoom()[0].setPetClient(petLola);
-             myLittlePet.getMiniRoom()[0].setAvaiable(false);
-             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Lola);
+             myLittlePet.getMiniRoom()[1].setPetClient(petLola);
+             myLittlePet.getMiniRoom()[1].setAvaiable(false);
+             myLittlePet.getMiniRoom()[1].setClinicHistoryOfThePet(clinicHistory1Lola);
 
 
             //Creando la mascota Coquito
@@ -79,9 +79,9 @@ public class Main {
              clinicHistory1Coquito.addMedicine(coquitoMedication2);
 
             //Asignando la mascota Coquito a una habitacion
-             myLittlePet.getMiniRoom()[1].setPetClient(petCoquito);
-             myLittlePet.getMiniRoom()[1].setAvaiable(false);
-             myLittlePet.getMiniRoom()[1].setClinicHistoryOfThePet(clinicHistory1Coquito);
+             myLittlePet.getMiniRoom()[0].setPetClient(petCoquito);
+             myLittlePet.getMiniRoom()[0].setAvaiable(false);
+             myLittlePet.getMiniRoom()[0].setClinicHistoryOfThePet(clinicHistory1Coquito);
 
             
             //Creando el cliente James
@@ -151,11 +151,11 @@ public class Main {
              petNemo.setClinicR(clinicRecordNemo);
 
             //Creando la historia clinica de Nemo
-             ClinicHistory clinicHistory1Nemo = new ClinicHistory (ClinicHistory.OPEN, "el pez se rasca contra las paredes del tanque constantemente", "flukes", new Time (2019, 03, 30), null, null);
+             ClinicHistory clinicHistory1Nemo = new ClinicHistory (ClinicHistory.OPEN, "sin apetito", "flukes", new Time (2019, 03, 30), null, null);
              clinicRecordNemo.addHistory(clinicHistory1Nemo);
 
             //Creando los medicamentos de Nemo
-             Medication nemoMedication1 = new Medication ("Antibioticos", 0.9, 1.0, "tres veces al dia");
+             Medication nemoMedication1 = new Medication ("Antibioticos", 0.9, 0.7, "tres veces al dia");
              clinicHistory1Nemo.addMedicine(nemoMedication1);
 
 
@@ -167,43 +167,43 @@ public class Main {
 
              //Creando servicios
 
-             Service serviceOne = new Service (Service.BATH_PETS_VETERINARY, "Bolita", 342);
+             Service serviceOne = new Service (Service.BATH_PETS_VETERINARY, "Bolita", 342, new Time (2019, 02, 01));
              myLittlePet.addService(serviceOne);
 
-             Service serviceTwo = new Service (Service.BATH_PETS_VETERINARY, "Beto", 432);
+             Service serviceTwo = new Service (Service.BATH_PETS_VETERINARY, "Beto", 432, new Time (2019, 02, 05));
              myLittlePet.addService(serviceTwo);
 
-             Service serviceThree = new Service (Service.BATH_PETS_VETERINARY, "Dino", 322);
+             Service serviceThree = new Service (Service.BATH_PETS_VETERINARY, "Dino", 322, new Time (2019, 02, 10));
              myLittlePet.addService(serviceThree);
 
-             Service serviceFour = new Service (Service.BATH_PETS_VETERINARY, "Dixie", 948);
+             Service serviceFour = new Service (Service.BATH_PETS_VETERINARY, "Dixie", 948, new Time (2019, 02, 20));
              myLittlePet.addService(serviceFour);
 
-             Service serviceFive = new Service (Service.BATH_PETS_HOME, "Copito", 454);
+             Service serviceFive = new Service (Service.BATH_PETS_HOME, "Copito", 454, new Time (2019, 03, 02));
              myLittlePet.addService(serviceFive);
 
-             Service serviceSix = new Service (Service.BATH_PETS_HOME, "Ben", 433);
+             Service serviceSix = new Service (Service.BATH_PETS_HOME, "Ben", 433, new Time (2019, 03, 12));
              myLittlePet.addService(serviceSix);
 
-             Service serviceSeven = new Service (Service.COURT_NAILS, "Bill", 123);
+             Service serviceSeven = new Service (Service.COURT_NAILS, "Bill", 123, new Time (2019, 03, 24));
              myLittlePet.addService(serviceFour);
 
-             Service serviceEight = new Service (Service.COURT_NAILS, "Archi", 543);
+             Service serviceEight = new Service (Service.COURT_NAILS, "Archi", 543, new Time (2019, 03, 24));
              myLittlePet.addService(serviceEight);
 
-             Service serviceNine = new Service (Service.COURT_NAILS, "Polo", 111);
+             Service serviceNine = new Service (Service.COURT_NAILS, "Polo", 111, new Time (2019, 03, 26));
              myLittlePet.addService(serviceNine);
 
-             Service serviceTen = new Service (Service.COURT_NAILS, "Blue", 232);
+             Service serviceTen = new Service (Service.COURT_NAILS, "Blue", 232, new Time (2019, 04, 01));
              myLittlePet.addService(serviceTen);
 
-             Service serviceEleven = new Service (Service.COURT_NAILS, "Ada", 034);
+             Service serviceEleven = new Service (Service.COURT_NAILS, "Ada", 034, new Time (2019, 04, 06));
              myLittlePet.addService(serviceEleven);
 
-             Service serviceTwelve = new Service (Service.PROPHYLAXIS, "Abril", 340);
+             Service serviceTwelve = new Service (Service.PROPHYLAXIS, "Abril", 340, new Time (2019, 04, 16));
              myLittlePet.addService(serviceTwelve);
 
-             Service serviceThirteen = new Service (Service.APPLICATION_VACCINES, "Abril", 900);
+             Service serviceThirteen = new Service (Service.APPLICATION_VACCINES, "Abril", 900, new Time (2019, 04, 20));
              myLittlePet.addService(serviceThirteen);
 
 	     } 
@@ -254,7 +254,7 @@ public class Main {
 
              System.out.println ("17. Para mostrar el promedio de ingresos de la veterinaria en una semana");
 
-             System.out.println ("18. Para generar un reporte por los servicios prestados en determinada fecha");
+             System.out.println ("18. Para añadir un nuevo sintoma");
 
              System.out.println ("19. Para agregar notas del posible diagnostico a la historia clinica de una mascota hospitalizada");
 
@@ -880,7 +880,22 @@ public class Main {
                 serviceSelected = Service.APPLICATION_VACCINES;
              }
 
-             Service newService = new Service (serviceSelected, petServiceName, idSelection);
+             System.out.println ("Ingrese el dia que se presto el servicio");
+             int dayService = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el mes que se presto el servicio");
+             int monthService = reader.nextInt();
+             reader.nextLine();
+
+             System.out.println ("Ingrese el año en el que se presto el servicio");
+             int yearService = reader.nextInt();
+             reader.nextLine();
+
+
+             Time timeService = new Time (yearService, monthService, dayService);
+
+             Service newService = new Service (serviceSelected, petServiceName, idSelection, timeService);
              myLittlePet.addService(newService);
 
 
@@ -954,7 +969,16 @@ public class Main {
 
              break;
 
+             case 18:
 
+             System.out.println ("Seleccione la mascota a la que desea agregarle el nuevo sintoma en la historia clinica, las siguientes son las mascotas actualmente hospitalizadas \n");
+             System.out.println (myLittlePet.showInformationPetsHospitalization());
+             String name = reader.nextLine();
+
+             System.out.println ("Ingrese el sintoma nuevo");
+             String symp = reader.nextLine();
+
+             System.out.println (myLittlePet.addSymptom(name, symp));
 
 
              case 19:

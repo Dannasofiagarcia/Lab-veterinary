@@ -4,16 +4,9 @@ import java.util.*;
 
 public class ClinicRecord{
 
-     //Atributos
-
-     //private String clientName;
-     //private int idOwner;
-     //private String petName;
-     private ArrayList <ClinicHistory> clinicH;
-
-
      //Relaciones
 
+    private ArrayList <ClinicHistory> clinicH;
 
      //Metodo constructor
 
@@ -22,8 +15,16 @@ public class ClinicRecord{
      	 clinicH = new ArrayList <ClinicHistory>();
      }
 
-     //Metodo para mostrar la informacion de las historias clinicas
 
+     /**
+    * This method show clinic history information <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Clinic history information is displayed <br>
+
+    * @return String The method return a message with the information of clinic history, if the pet doesn't have a clinic history return a different message <br>
+    */
 
      public String showInformationClinicHistory (){
 
@@ -36,6 +37,7 @@ public class ClinicRecord{
      	 	 msg += ("\n" + "HISTORIA CLINICA" + "\n" + "La fecha de ingreso es " + clinicH.get(i).getAdmisionDate() + "\n" 
      	 	 	+ "El status es " + clinicH.get(i).getStatus() + "\n" 
      	 	 	+ "Los sintomas de la mascota son " + clinicH.get(i).getSymptom() + "\n" 
+                + "Las notas de la historia clinica son " + clinicH.get(i).getNotes() + "\n"
      	 	 	+ "El diagnostico de la mascota es " + clinicH.get(i).getDiagnosis() + "\n" + "\n" 
      	 	 	+ clinicH.get(i).showInformationAboutMedicine() + "\n" + "\n" 
      	 	 	+ "La fecha de salida de la mascota es " + clinicH.get(i).showOffDate());
@@ -51,8 +53,17 @@ public class ClinicRecord{
      	return msg;
      }
 
-      //Metodo para calcular los dias de hospitalizacion de una mascota
-    
+
+    /**
+    * This method calculate the days a pet was hospitalized <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Hospitalization days is calculate <br>
+
+    * @return int The method return the days a pet was hospitalized <br>
+    */
+
      public int hospitalizationDays (){
 
      	int days = 0;
@@ -65,7 +76,16 @@ public class ClinicRecord{
      	return days;
      }
 
-     //Metodo para asignar
+
+    /**
+    * This method assigned the status CLOSED to the clinic history of discharged pet <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Clinic history status was changed <br>
+
+    * @return ClinicHistory The method return the clinic history that was changed <br>
+    */
 
      public ClinicHistory showClinicHistory (){
 
@@ -84,7 +104,17 @@ public class ClinicRecord{
 
     }
 
-    //Metodo para ver todas las historias clinicas de una mascota
+
+
+    /**
+    * This method count how many clinic histories <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Quantity of clinic histories was displayed <br>
+
+    * @return int The method return quantity of clinic histories <br>
+    */
 
     public int howManyClinicH (){
 
@@ -100,13 +130,30 @@ public class ClinicRecord{
     }
 
 
-     //Metodo para agregar las historias clinicas
+    /**
+    * This method add a new clinic history <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Clinic history was added <br>
+
+    * @param nuevo Is the clinic history to add, nuevo != null <br>
+    */
 
      public void addHistory (ClinicHistory nuevo){
      	clinicH.add(nuevo);
      }
 
-     //Metodo para seleccionar las historias clinicas abiertas
+
+      /**
+    * This method select CLOSED clinic histories <br>
+
+    * <b>pre:</b> clinicH is initilized, clinicH != null <br>
+
+    * <b>post:</b> Clinic histories is displayed <br>
+
+    * @return ClinicHistory The method return the clinic history CLOSED <br>
+    */
 
      public ClinicHistory incomePublicOpenClinicH(){
 

@@ -40,9 +40,15 @@ public class ClinicHistory{
      }
 
 
-      //Metodo para mostrar la informacion de las historias clinicas
 
+    /**
+    * This method shows clinic history information <br>
 
+    * <b>post:</b> Clinic history information is displayed <br>
+
+    * @return String The method return a message with the information of clinic history <br>
+    */
+      
      public String showInformationHistory (){
 
          String msg = "";
@@ -60,14 +66,29 @@ public class ClinicHistory{
 
 
 
-     //Metodo para agregar los medicamentos
+    
+    /**
+    * This method shows prescription medication <br>
+
+    * <b>post:</b> Clinic history information is displayed <br>
+
+    * @param nuevo Is the medicine to add, nuevo != null <br>
+    */
 
      public void addMedicine (Medication nuevo){
      	prescriptionMedications.add(nuevo);
      }
      
 
-     //Metodo para ver los medicamentos recetados
+     /**
+    * This method shows clinic history information <br>
+
+    * <b>pre:</b> prescriptionMedications is initilized, prescriptionMedications != null <br>
+
+    * <b>post:</b> Prescription medication information is displayed <br>
+
+    * @return String The method return a message with the information of medication <br>
+    */
 
      public String showInformationAboutMedicine(){
 
@@ -81,7 +102,16 @@ public class ClinicHistory{
      }
 
 
-     //Metodo para convertir la fecha de ingreso solo a dias
+
+    /**
+    * This method convert a date in only days <br>
+
+    * <b>pre:</b> admisionDate != null <br>
+
+    * <b>post:</b> admision date was converted to onlyd ays <br>
+
+    * @return int The method return the conversion of days <br>
+    */
 
      public int admisionDateInOnlyDays (){
 
@@ -99,7 +129,16 @@ public class ClinicHistory{
      }
      
 
-    //Metodo para mostrar la fecha de salida
+
+    /**
+    * This method shows off date information <br>
+
+    * <b>pre:</b> offDate != null <br>
+
+    * <b>post:</b> Off date information was displayed <br>
+
+    * @return String The method return a message with off date information <br>
+    */
 
      public String showOffDate (){
 
@@ -117,6 +156,17 @@ public class ClinicHistory{
 
         return msg;
      }
+
+
+    /**
+    * This method shows admision date <br>
+
+    * <b>pre:</b> admisionDate != null <br>
+
+    * <b>post:</b> Admision date information was displayed <br>
+
+    * @return String The method return a message with admision date information <br>
+    */
 
 
      //Metodo para mostrar la fecha de entrada 
@@ -139,7 +189,15 @@ public class ClinicHistory{
      }
 
 
-     //Metodo para obtener el precio de los medicamentos
+      /**
+    * This method calculate medication cost <br>
+
+    * <b>pre:</b> prescriptionMedications is initilized, prescriptionMedications != null <br>
+
+    * <b>post:</b> Prescription medication cost is displayed <br>
+
+    * @return double The method return a message with the cost of medication <br>
+    */
 
      public double medicationCost (){
 
@@ -153,12 +211,32 @@ public class ClinicHistory{
         return cost;
      }
 
-     //Metodo para añadir notas
+
+    /**
+    * This method add notes <br>
+
+    * <b>post:</b> Notes were added <br>
+
+    * @param nuevo Is the notes to add. nuevo != null, nuevo != " " <br>
+    */
 
      public void addNotes (String nuevo){
          notes = nuevo;
      }
 
+
+     /**
+    * This method add symptom <br>
+
+    * <b>post:</b> Symptom were added <br>
+
+    * @param nuevo Is the symptom to add. nuevo != null, nuevo != " " <br>
+    */
+
+     public void addSymptoms (String nuevo){
+
+        symptom += ("Sintoma nuevo: " + nuevo);
+     }
 
 
      //Get and set

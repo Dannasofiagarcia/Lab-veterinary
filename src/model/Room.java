@@ -26,7 +26,13 @@ public class Room{
     }
 
 
-     //Metodo para calcular el costo de hospitalizacion de una habitacion
+    /**
+    * This method calculate hospitalization cost <br>
+
+    * <b>post:</b> Cost hospitalization was calculated <br>
+
+    * @return double The method returns the cost of hospitalization<br>
+    */
 
       public double costHospitalizationRoom (){
 

@@ -38,7 +38,13 @@ public class Pet{
      }
 
 
-     //Costo hospitalizacion
+     /**
+    * This calculate hospitalization cost <br>
+
+    * <b>post:</b> Hospitalization cost was calculated <br>
+
+    * @return double The method returns the cost of the hospitalization <br>
+    */
 
      public double costHospitalization (){
 
@@ -153,7 +159,14 @@ public class Pet{
            return cost;
      }
 
-     //Metodo para calcular la masa corporal de la mascota
+
+     /**
+    * This method calculate body mass index <br>
+
+    * <b>post:</b>Body mass index was calculated <br>
+
+    * @return double The method returns the body mass index <br>
+    */
 
      public double calculateBMI(){
  

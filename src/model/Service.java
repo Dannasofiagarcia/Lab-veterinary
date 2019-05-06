@@ -20,20 +20,29 @@ public class Service {
 	//Relaciones
 
 	 private Time dateService;
-	 private Pet petService;
 
 	//Constructor
 
-	 public Service (String type, String namePet, int idOwner){
+	 public Service (String type, String namePet, int idOwner, Time dateService){
 
 	 	 this.type = type;
 	 	 this.namePet = namePet;
 	 	 this.idOwner = idOwner;
+	 	 this.dateService = dateService;
 	 	 cost = serviceCost();
 	 }
 
-     //Metodo para calcular el costo de los servicios
 
+	 /**
+    * This method calculate service cost  <br>
+
+    * <b>pre:</b>type is initilized, type != null <br>
+
+    * <b>post:</b> Service cost is calculated <br>
+
+    * @return double The method returns service cost <br>
+    */
+     
      public double serviceCost(){
 
      	if (type.equals(BATH_PETS_VETERINARY)){
@@ -61,7 +70,15 @@ public class Service {
      }
 
 
-     //Metodo para pasar la fecha a dias
+     /**
+    * This method convert a date to days  <br>
+
+    * <b>pre:</b> dateService is initilized, dateService != null <br>
+
+    * <b>post:</b> Date was converted to only days <br>
+
+    * @return int The method return the number of days <br>
+    */
 
      public int serviceDate (){
 
@@ -74,7 +91,7 @@ public class Service {
 
      	return days;
      }
-     
+
 	 //Get y set
 
 	 public String getType(){
